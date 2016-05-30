@@ -17,6 +17,10 @@ worden gevisualiseerd.
 
 Met een dropdown-menu kunnen de visualisaties worden aangepast om de data van slechts 1 soort te laten zien, in plaats van het europese algehele gemiddelde. 
 
+Ter conclusie:
+3 visualisaties (map, linechart, barchart)
+interactieve elementen (jaar selecteren map, soort selecteren door middel van dropdownmenu, land selecteren door op de kaart te klikken).
+
 ####Technische problemen
 Op dit moment is de dataset te groot (500 000 kB) om het makkelijk te bewerken in een tekstverwerker. Daarom ga ik het eerst met python aanpassen en alle overbodige 
 kolommen eruitgooien en het in JSON formaat zetten. 
