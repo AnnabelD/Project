@@ -8,22 +8,22 @@ Visualisatie 1: Europese kaart dichtheden van broedvogels
 De eerste visualisatie is een kaart van Europa waarop de dichtheden van broedvogels zijn gevisualiseerd. 
 Het idee is om met behulp van bubbles per land aan te geven hoe veel vogels er zitten. De standaardinstelling zal het 
 gemiddelde over de periode 1972-1995 zijn van alle vogels bij elkaar. 
-![](doc/img_2275.jpg)
+[](doc/img_2275.jpg)
 
 Visualisatie 2: Soortsamenstelling per land
 De tweede visualisatie (Visualisatie 2) ontstaat als er op een bubble geklikt wordt en laat de soortsamenstelling in dat land zien. Er komt een percentagecirkel
 met welke soorten daar zitten en hun percentage, als de percentages heel laag worden komt het onder overige te staan. Eventueel kan er op overige geklikt worden om ook de heel weinig voorkomende soorten te zien (niet onderdeel van MVP). 
 Deze visualisatie is ook gelinkt aan Visualisatie 3. 
-![](doc/img_2279.jpg)
+[](doc/img_2279.jpg)
 
 Visualisatie 3: Biodiversiteit per land (barchart) (aantal soorten per land/totale oppervlakte land)
 In deze visualisatie wordt duidelijk welke landen het goed doen op het gebied van biodiversiteit van broedvogels (veel verschillende soorten op een klein landoppervlak)
 en welke landen het minder doen. Door boven een staaf te hoveren komt de specifieke waarde van dat land. Door op het land te klikken past Visualisatie 2 zich aan aan dat land. 
-![](doc/img_2280.jpg)
+[](doc/img_2280.jpg)
 
 Visualisatie 4: Hotspots voor een soort
 Een barchart waarin wordt aangegeven hoe vaak een soort voorkomt in een land (eerst het europese gemiddelde), vervolgens een x (maximum moet nog bepaald worden) aantal landen die met elkaar vergeleken kunnen worden. 
-![](doc/img_2278.jpg)
+[](doc/img_2278.jpg)
 
 Met een dropdown-menu kunnen de visualisaties 1 en 4 worden aangepast om de data van slechts 1 soort te laten zien, in plaats van het europese algehele gemiddelde. 
 
