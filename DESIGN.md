@@ -8,14 +8,14 @@ Het doel van deze visualisatie is om een overzicht te geven van de situatie in E
 via een dropdownmenu een soort selecteren, waarna de kaart alleen nog maar de gegevens van die soort laat zien. 
 Totale aantal vogels (of soorten) per land (gemiddeld per jaar. Data voor 23 jaar). Schalen van bubbels (misschien bubbel te groot voor land)? Kleur van bubbels (dan niet landen ook nog eens verschillende kleuren invullen, te verwarrend)?
 Benodigde data landkleur: totaal aantal soorten per land en de totale landoppervlakte
-![Visualisatie alle soorten](Vis1alg.JPG)
-![Visualisatie 1 soort](Vis1soort(2).JPG)
+![Visualisatie alle soorten](doc/Vis1alg.JPG)
+![Visualisatie 1 soort](doc/Vis1soort(2).JPG)
 
 #####Visualisatie 2: Piechart soortsamenstelling land
 Met deze visualisatie kan de gebruiker makkelijk voor een land zien wat de soortsamenstelling voor dat land is. Een land wordt geselecteerd door ofwel op een land
 in Visualisatie 1 te klikken, of op een land (een kolom) in Visualisatie 3. 
 Benodigde data: Alle waarnemingen voor het geselecteerde land (= 100%), per soort een percentage
-![Visualisatie 2](Vis2.JPG)
+![Visualisatie 2](doc/Vis2.JPG)
 
 #####Visualisatie 3: Barchart (bars horizontaal) biodiversiteit (staat eigenlijk al in de landkaart)
 Deze visualisatie laat nog een keer de biodiversiteit van Europa zien net zoals Visualisatie 1. De toegevoegde waarde van deze visualisatie is de mogelijkheid om 
@@ -23,13 +23,13 @@ landen echt goed te vergelijken doordat de landen van hoogste broedvogelbiodiver
 Benodigde data: totaal aantal soorten per land en de totale landoppervlakte
 Bar met europees gemiddelde in het midden in een andere kleur (erboven landen die het beter doen (in groen), eronder landen die het slechter doen (in rood)).
 Interactie: in plaats van biodiversiteit per land, kan er ook een soort geselecteerd worden waardoor snel duidelijk wordt wat de beste landen zijn per soort.
-![Visualisatie 3](Vis3.JPG)
+![Visualisatie 3](doc/Vis3.JPG)
 
 #####Visualisatie 4: Barchart (bars verticaal) Gebruiker kan landen vergelijken voor 1 of meerdere soorten. 
 In deze visualisatie kan de gebruiker zelf de data onderzoeken, door zowel de landen als de soorten te selecteren waarin hij/zij geïnteresseerd is. Door op de knop onderin ofwel country, 
 of species aan te klikken past de x-as zich aan waardoor het makkelijker wordt om resp. soorten per land of landen per soort te vergelijken (zie linker barchart en rechter barchart).
 Benodigde data: voor land x, y, z, het totale aantal waarnemingen voor de geselecteerde soort. Het europees gemiddelde voor die soort. 
-![Visualisatie 4](Vis4.JPG)
+![Visualisatie 4](doc/Vis4.JPG)
 
 ####Technische Implementatie
 De [Dataset waarnemingen](http://ipt.sovon.nl/resource?r=eoa1997): 
