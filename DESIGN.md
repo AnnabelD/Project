@@ -9,7 +9,7 @@ via een dropdownmenu een soort selecteren, waarna de kaart alleen nog maar de ge
 Totale aantal vogels (of soorten) per land (gemiddeld per jaar. Data voor 23 jaar). Schalen van bubbels (misschien bubbel te groot voor land)? Kleur van bubbels (dan niet landen ook nog eens verschillende kleuren invullen, te verwarrend)?
 Benodigde data landkleur: totaal aantal soorten per land en de totale landoppervlakte
 ![Visualisatie alle soorten](doc/Vis1alg.JPG)
-![Visualisatie 1 soort](doc/Vis1soort(2).JPG)
+![Visualisatie 1 soort](doc/Vis1soort (2).JPG)
 
 #####Visualisatie 2: Piechart soortsamenstelling land
 Met deze visualisatie kan de gebruiker makkelijk voor een land zien wat de soortsamenstelling voor dat land is. Een land wordt geselecteerd door ofwel op een land
