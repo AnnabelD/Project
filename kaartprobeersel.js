@@ -2,7 +2,7 @@
 /* Europakaart Datamaps */
 
 d3_queue.queue()
-	.defer(d3.json,"landdeel.json")
+	.defer(d3.json,"landdeel2.json")
 	.defer(d3.json,"area.json")
 	.await(start);
 
@@ -10,6 +10,52 @@ function start(error, data, area){
 	if (error){
 		alert(error);
 	}
+	console.log(data);
+	console.log(area);
+	var data_format = {}
+	var area_format = {}
+	area.forEach(function(d){
+		area_format[d.country] = +d.area;
+	});
+	console.log(area_format);
+
+	for (var i in data){
+		country_codes.forEach(function(k){
+			var index = k.indexOf(data[i].country);
+			if (index != -1){
+				data[i].name = data[i].country;
+				console.log(data[i].country);
+				data[i].country = k[1];
+				console.log(data[i].country);
+				console.log(data[i].observation.length);
+				data_format[data[i].country] = {fillKey: key(area_format[data[i].name], data[i].observation.length),
+				"area":area_format[data[i].name],
+				"observations": [{					
+				"species": data[i].name["species"], "number": data[i].name["number"]
+				}]
+				};
+			}
+		});
+	}
+	
+	/* data[0].forEach(function(d,j){
+		console.log("hi")
+		country_codes.forEach(function(i){
+			console.log("hiagain")
+			var index = i.indexOf(d.country);
+			if (index != -1){
+				d.name = d.country;
+				d.country = i[1];
+				console.log(d.country);
+				data_format[d.country] = {fillKey: key(area_format[d.name], d.length),
+				"area":area_format[d.name],
+				"observations": [{
+				"species": d.name[j]["species"], "number": d.name[j]["number"]
+				}]
+				};
+			}
+		});
+	}); */
 	var map = new Datamap({
 		scope: 'world',
 		element: document.getElementById('map'),
@@ -26,18 +72,27 @@ function start(error, data, area){
 			projection: projection
 			};
 		},
-		fills: {defaultFill: 'grey'}, 
-		data: {
-			ITA: {fillKey: 'green'},
-			IRL: {fillKey: 'blue'}
-		}
+		fills: {'< 25 species': '#f1eef6',
+				'< 50 species': '#bdc9e1',
+	            '< 75 species': '#74a9cf',
+	            '< 100 species': '#2b8cbe',
+	            '< 125 species': '#045a8d',
+				'no data': 'grey',
+	            defaultFill: 'grey'}, 
+		data: data_format
 	});
-	
-	console.log("hi");
-	console.log(data);
-	console.log(data["France"]);
-	console.log(area);
-	console.log(area[0]["country"])
+}
+
+/* Colors the countries based on the density of breeding birds species */
+function key(area, total){
+	var scale = [0, 25, 50, 75, 100, 125];
+	var colors = ['< 25 species','< 50 species','< 75 species','< 100 species','< 125 species'];
+
+	for (var h = 1, len = scale.length; h < len; h++){
+		if (total >= scale[h - 1] && total < scale[h]){
+			return colors[h - 1];
+		}
+	}
 }
 
 /* list Author: Robin Kuiper, 
