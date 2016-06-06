@@ -29,3 +29,20 @@ Misschien toch met coordinaten werken en het bestand in tweeën splitsen?
 Programma dat coordinaten omzet naar landnamen is heel traag
 - dataverwerking in scripts opgedeeld zodat ik niet lang hoef te wachten en tot de conclusie kom dat ik toch ergens een fout heb gemaakt
 - coordinaten van dingen in zee worden niet herkend -> "None". Dus die filter ik eruit (naderhand). Ik heb voldoende data van op land
+- zorgen datastructuur: [{json}] zodat forEach gebruikt kan worden
+Waarschijnlijk moet de datastructuur van area ivm de twee datasets linken als volgt:
+{"landnaam":"area",
+"landnaam": "area"} 
+Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua laden) om het al in python te doen. 
+
+## Dag 6
+- totale dataset in tweeën gesplitst
+- Van tweede deel nu een .txt (countriescoodump2.txt) met alle landen op volgorde
+- ook scientific name meenemen in dataset zodat het overzichtelijker wordt (ipv 200 soorten per land, kan je ze nu onderverdelen in genus)
+- Misschien een barchart maken met geni voor een land, als er dan op een genus wordt geklikt worden de soorten zichtbaar. Zorgt nog steeds voor te grote barchart
+- Barchart geni met slider? Top 10 geni die voorkomen? Vervolgens klikken op Barchart waardoor tweede barchart te voorschijn komt
+- Diversiteit Europese landen verschilt nauwelijk (227 geni per land, 499 soorten) alleen azerbaijan, kazachstan vallen erbuiten (gelukkig anders was er zeker iets mis gegaan met dataverwerking)
+- resultaat om te vertellen: eu diversiteit is gelijk d.m.v. species map and genus map. 
+
+
+
