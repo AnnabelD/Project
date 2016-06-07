@@ -1,0 +1,21 @@
+/* Annabel Droste */
+
+.axis{
+	stroke: black;
+	fill: none;
+}
+.bars{
+	fill:blue;
+}
+
+.barchartspecies rect{
+	fill: #00CC00;
+}
+
+.barchartgenus rect{
+	fill: #009900;
+}
+
+.barchartdiv rect{
+	fill: orange;
+}

@@ -43,6 +43,13 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 - Barchart geni met slider? Top 10 geni die voorkomen? Vervolgens klikken op Barchart waardoor tweede barchart te voorschijn komt
 - Diversiteit Europese landen verschilt nauwelijk (227 geni per land, 499 soorten) alleen azerbaijan, kazachstan vallen erbuiten (gelukkig anders was er zeker iets mis gegaan met dataverwerking)
 - resultaat om te vertellen: eu diversiteit is gelijk d.m.v. species map and genus map. 
+- Misschien een visualisatie-idee: 2 landen selecteren, vervolgens komt eruit welke soorten verschillen (wel of niet aanwezig in het ene land, of vaker/minder aanwezig?)
 
-
+## Dag 7
+- barchart gemaakt voor 1 soort voor alle landen (pas later bedacht dat ik dat eigenlijk in de kaart wilde laten zien)
+- geëxperimenteerd met bootstrap, lijkt wel handig voor de positionering van de elementen
+- genus en specieschart voor 1 land gemaakt, sorteren gaat nog fout (x-waarden gaan niet mee), dus heb dat even uitgeschakeld
+- barchart geni is nog veelste groot (specieschart laat alleen de soorten binnen een genus zien)
+- Userinput van text gemaakt, maar is case sensitive, dus dat moet misschien anders. (Dropdownmenu misschien?)
+- Uitvogelen hoe je makkelijk een kaart kan updaten. 
 
