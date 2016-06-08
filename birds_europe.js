@@ -25,7 +25,7 @@ var y_axis = d3.svg.axis()
 var tip = d3.tip()
 	.attr('class', 'tip')
 	.html(function(d){
-		return '<span>' + d.y_valuename + '</span>';
+		return '<span>' + d.number + '</span>';
 	});
 
 var div_tip = d3.tip()
@@ -109,10 +109,12 @@ function start(error, data, area){
 			})
 		}
 	});
-	map.legend();
 	
 	var species_button = document.getElementById("species_button");
 	species_button.addEventListener("click", function(){ colourMap(map, data_format, 0);});
+	
+	var area_button = document.getElementById("area_button");
+	area_button.addEventListener("click", function(){ colourMap(map, data_format, 1);});
 	
 	
 	var genus_divbutton = document.getElementById("genus_div_submit");
@@ -122,19 +124,26 @@ function start(error, data, area){
 }
 
 /* Colourmap with for species, genus or one species */
-function colourMap(subject, data_format, area){
-	var max_number = d3.max(data_format, function(d){console.log(data_format[d]["number"]); return data_format[d]["number"]})
-	for (var i in data_format){
-		data_format["fillKey"] = key(area, data_format[i]["number"]);
+function colourMap(map, data_format, area){
+	var codes = Object.keys(data_format);
+	var new_data_format = data_format;
+	for (var i = 0, len = codes.length; i < len; i++){
+		if (area == 1){ new_area = data_format[codes[i]].area}
+		else{ new_area = 0}
+		new_data_format[codes[i]] = {fillKey: key(new_area, data_format[codes[i]]["number"]),
+			"name": data_format[codes[i]].name,
+			"area": data_format[codes[i]].area,
+			"observations": data_format[codes[i]].observations,
+			"number": data_format[codes[i]].number
+		}
 	}
-	map.fills = {}
+	map.updateChoropleth(new_data_format);
 }
 
 /* Function that draws the chart that shows up if a country is clicked and shows all the genus/species observed in that country.. 
 	Het is nog niet gelukt om de assen goed te krijgen, bovendien wordt de chart voor sommige landen veel te breed */
 function drawChart(data, name, type){
 	if (type == "genus"){
-		var length = data.length;
 		var data_array = data;
 		var data_key = "genus";
 		var y_valuename = "details";
@@ -145,11 +154,12 @@ function drawChart(data, name, type){
 	};
 	
 	if (type == "species"){
-		var length = data.details.length;
 		var data_array = data.details;
 		var data_key = "species";
 		var y_valuename = "number";
 		var barwidth = 1.5 * barwidth_norm;
+		var old_spec_chart = d3.select(".barchartspecies")
+			.selectAll("g").remove();
 	};
 
 	// remove old chart 
@@ -159,50 +169,51 @@ function drawChart(data, name, type){
 		
 	// create new chart
 	var chart = d3.select(".barchart" + type)
-		.attr("width", barwidth * length + margin.right + margin.left)
+		.attr("width", width + margin.right + margin.left)
 		.attr("height", height + margin.bottom + margin.top)
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," +  margin.top + ")");
-	
+		
+	// sort the data on descending order and select the top 10
 	var data_domain = []
-	data_array.forEach(function (d){ data_domain.push(d[data_key])});
-	
+	data_array.forEach(function (d){ if (type == "genus"){ data_domain.push({"name": d[data_key], "number": d[y_valuename][y_valuename2], "details": d.details})}
+	else{ data_domain.push({"name": d[data_key], "number": d[y_valuename]})}});
+	data_domain = data_domain.sort(function(a, b) {
+		return b.number < a.number ? -1 : b.number > a.number ? 1 : b.number >= a.number ? 0 : NaN;
+	})
+	if (type == "genus"){
+		if (data_domain.length > 10){data_domain.length = 10;}
+	};
+	var length = data_domain.length;
 	// x-as barchart species per country
 	var x = d3.scale.ordinal()
-		.domain(data_domain)
-		.rangeRoundBands([0, barwidth * length]);
+		.domain(data_domain.map(function(d){ return d.name}))
+		.rangeRoundBands([0, width]);
 	    	
 	var x_axis = d3.svg.axis()
 		.scale(x)
 		.orient("bottom");	
 	
-	var max_data = d3.max(data_array, function(d){ if (type == "genus"){return d[y_valuename][y_valuename2]}
-	else{return d[y_valuename]}});
-	y.domain([0, max_data + 3]);
+	var max_data = d3.max(data_domain, function(d){ return d.number});
+	y.domain([0, max_data + 5]);
 	
 	chart.call(tip);
 		
 	var bar = chart.selectAll("g")
-		/* .data(data_array.sort(function(a, b){	
-			if (type == "genus"){ return b[y_valuename][y_valuename2]-a[y_valuename][y_valuename2]}
-			else{return b[y_valuename]-a[y_valuename]}})) */
-		.data(data_array)
+		.data(data_domain)
 		.attr("class", "bars")
 		.enter().append("g")
 		.attr("transform", function(d, i) { 
-			return "translate(" + i * barwidth + ",0)"; 
+			return "translate(" + i * (width/length) + ",0)"; 
 		});
 
 	bar.append("rect")
-    	.attr("y", function(d) { 
-			if (type == "genus"){return y(d[y_valuename][y_valuename2]);}
-			else{ return y(d[y_valuename])}
-    	})
+    	.attr("y", function(d) { return y(d.number);})
     	.attr("height", function(d) { 
-    		if (type == "genus"){return height - y(d[y_valuename][y_valuename2]);}
-			else{ return height - y(d[y_valuename])}
+    		if (type == "genus"){return height - y(d.number);}
+			else{ return height - y(d.number)}
     	})
-    	.attr("width", barwidth - 3)
+    	.attr("width", (width/length) - 3)
 		.on("mouseover", function(d){
     		d3.select(this).style("fill", "#7ddc1f")
     		tip.show(d);
@@ -211,7 +222,7 @@ function drawChart(data, name, type){
     		d3.select(this).style("fill", "")
     		tip.hide(d);
     	})
-		.on("click", function(d){drawChart(d, name, "species");});
+		.on("click", function(d){ drawChart(d, d.name + " in " + name, "species");});
 		
     // creëren van de assen
     chart.append("g")
@@ -234,6 +245,12 @@ function drawChart(data, name, type){
 		.attr("dy", ".31em")
 		.attr("transform", "rotate(-65)")
 		.style("text-anchor", "end");
+	
+	chart.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")   
+        .text(type + " in " + name);
 }
 
 /* Draws the diversity barchart, an overview of the diversity in the EU. */
@@ -242,7 +259,6 @@ function diversity(data_format, species_name){
 	var number_species = [];
 	// right now, only countries where the birds are present are shown.
 	for (var i in data_format){
-		console.log("hi")
 		data_format[i].observations.forEach(function(d){
 			d.details.forEach(function(k){
 				if (k.species == species_name){
@@ -251,7 +267,6 @@ function diversity(data_format, species_name){
 			}})
 		})
 	};
-	console.log(countries);
 	d3.select(".barchartdiv")
 		.selectAll("g").remove()
 		.selectAll(".axis").remove();
@@ -260,7 +275,6 @@ function diversity(data_format, species_name){
 		.domain([0, d3.max(number_species, function(d){ return d.number;})])
 		.range([height, 0]);
 
-	console.log(number_species);
 	var x_div = d3.scale.ordinal()
 		.domain(countries)
 		.rangeRoundBands([0, barwidth_norm * countries.length]);
@@ -301,11 +315,7 @@ function diversity(data_format, species_name){
     		d3.select(this).style("fill", "")
     		div_tip.hide(d);
     	})
-	/* bar.append("rect")
-		.attr("x", 0)
-		.attr("width", function(d) { return y_div(d.number) + "px"; })
-    	.attr("height", barwidth_norm - 2)
-	 */
+
 	// creëren van de assen
     div_chart.append("g")
     	.attr("class", "y axis")
@@ -331,11 +341,18 @@ function diversity(data_format, species_name){
 
 /* Colors the countries based on the density of breeding birds species */
 function key(area, total){
-	var scale = [0, 0.00001, 0.0001, 0.001, 0.1, 1];
+	if (area == 0){
+		var scale = [0, 100, 200, 300, 400, 500];
+		var value = total;
+	}
+	else{
+		var scale = [0, 0.00001, 0.0001, 0.001, 0.1, 1];
+		var value = total/area;
+	}
 	var colors = ['< 25 species','< 50 species','< 75 species','< 100 species','< 125 species'];
 
 	for (var h = 1, len = scale.length; h < len; h++){
-		if ((total/area) >= scale[h - 1] && (total/area) < scale[h]){
+		if (value >= scale[h - 1] && value < scale[h]){
 			return colors[h - 1];
 		}
 	}

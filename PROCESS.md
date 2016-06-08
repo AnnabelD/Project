@@ -53,3 +53,15 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 - Userinput van text gemaakt, maar is case sensitive, dus dat moet misschien anders. (Dropdownmenu misschien?)
 - Uitvogelen hoe je makkelijk een kaart kan updaten. 
 
+## Dag 8
+- bespreken met iemand hoe de genus kaart moet (top 10?).
+- Kan je ook de fills van een map veranderen? Nee dus een aparte legenda maken. 
+- Het aanpassen van de map is nog tamelijk omslachtig doordat telkens alle data moet worden meegegeven voor het geval er op een land geklikt wordt
+- het lukt niet om de "fills" binnen map aan te passen, daardoor klopt de legenda niet met wat er te zien is. 
+- Heb besloten om alleen de top10 van een land te laten zien qua genus aangezien dat het meest overzichtelijk is. 
+- te doen: 
+	- check voor spelling input text species, geef misschien al suggesties
+	- vergelijkingsvisualisaties: gebruiker kan 2 landen selecteren en 2 soorten? 
+
+
+
