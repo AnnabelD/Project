@@ -64,4 +64,7 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 	- vergelijkingsvisualisaties: gebruiker kan 2 landen selecteren en 2 soorten? 
 
 
-
+## Dag 9
+- de datamap aangepast aan highresolution waardoor europa mooier wordt. Nadeel constante foutmeldingen met guernsey en isle of man alsde kaart geupdate wordt
+- opgelost door die 2 te hardcoden en eruit te halen bij het data-inladen. Misschien niet de mooiste oplossing maar wel het simpelst.
+- de twee grafieken van species willen niet naast elkaar staan (kaart en barchart). 

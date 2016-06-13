@@ -8,60 +8,72 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Europese kaart met coordinaat</title>
 		<link rel="stylesheet" href="birds_europe.css"/>
- 		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-		<script src="//datamaps.github.com/scripts/datamaps.world.min.js"></script>	
+		<script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.5/datamaps.all.hires.min.js"></script>	
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 		<script src="https://d3js.org/d3-queue.v2.min.js"></script>
 		<script src="birds_europe.js"></script>
-		<script src="country_codes.js"></script>
-		<!-- <script src="map_functions.js"></script> -->
+		<script src="country_codes2.js"></script>
+		<script src="map_functions.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ 		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.5/datamaps.world.min.js"></script>
+		<script src="//d3js.org/d3-queue.v2.min.js"></script>
+		<script src="birds_europe.js"></script>
+		<script src="country_codes.js"></script>
+		<script src="map_functions.js"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+		 -->
 	</head>
 	<body>
 		<h1>Breeding Birds in Europe</h1>
 		<div class="container">
 			<input type="button" value="area" id="area_button" />
 			<input type="button" value="species" id="species_button"/>
+			<input type="button" value="Total observations" id="total_obs_button"/>
 			<div class="row">
 				<div class="col-md-6">
-					<div id="map" style="position: relative; width: 600px; height: 300px;"></div>
+					<div id="map" style="position: relative; width: 560px; height: 500px;"></div>
 				</div>
 				<div class="col-md-6">
-					<p>Several different views can be selected for the map: total number of genus observed in a country, total of observed species, or the presence of one species.
-					Both the genus map as the species map show that there is no great difference between countries within biodiversity between countries. Only the countries at the edges of europe
-					show less diverse observations. However the total number of observations within these countries was rather low.</p>
+					<div class="row">
+						<svg class="barchartgenus"></svg>
+					</div>
+					<div class="row">
+						<svg class="barchartspecies"></svg>
+					</div>
 				</div>					
 			</div>
 			<br>
-			<br>
-			<br>
 			<div class="row">
-				<div class="col-md-6">
-					<input type="text" placeholder="genus" id="genus_div"/>
-					<input type="button" value="Create barchart for species" id="genus_div_submit"/>
-				</div>
-				<div class="md-col-6">
-					<svg class="barchartdiv"></svg>
-				</div>
+				<p>Several different views can be selected for the map: total number of species observed in a country, total number of observations or the total number of species divided by the area of the country.
+					The species map shows that there is no great difference between countries concerning the biodiversity of breeding birds. Only the countries at the edges of europe
+					show less diverse observations. However the total number of observations within these countries was rather low.</p>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<svg class="barchartgenus"></svg>
-				</div>
-				<div class="col-md-6">
-					<svg class="barchartspecies"></svg>
-				</div>
+				<input type="dropdown" placeholder="species" id="genus_div"/>
+				<input type="button" value="Create barchart for species" id="genus_div_submit"/>
 			</div>
-			<!-- <div class="row">
-				<div class="col-md-6">
-					
-				</div>
-			</div> -->
+
+			<div id="select">Species</div>
+
+			<div class="row">
+				<div id="map_species" style="position: relative; width: 300px; height: 250px;"></div>
+				<svg class="barchartdiv"></svg>
+			</div>
 		</div>
 	</body>
 </html>
