@@ -64,7 +64,28 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 	- vergelijkingsvisualisaties: gebruiker kan 2 landen selecteren en 2 soorten? 
 
 
-## Dag 9
+## Dag 10
 - de datamap aangepast aan highresolution waardoor europa mooier wordt. Nadeel constante foutmeldingen met guernsey en isle of man alsde kaart geupdate wordt
 - opgelost door die 2 te hardcoden en eruit te halen bij het data-inladen. Misschien niet de mooiste oplossing maar wel het simpelst.
 - de twee grafieken van species willen niet naast elkaar staan (kaart en barchart). 
+
+## Dag 11
+- skip denk ik de area component van de visualisatie aangezien het niet echt veel zegt. Betekent wel dat ik geen queu meer nodig heb. (window.onload?). 
+	Bespreken met iemand.
+- code becommentarieerd
+	
+## Dag 13
+- dropdownmenu is gelukt (misschien nog ergens een link creeren naar wikipedia voor meer info?)
+- sommige grafieken passen niet mooi in een row waardoor alles er niet echt mooi uitziet (inline-block, vertical-align).
+- doordat de 2 barcharts van genus top tien en de soorten van een genus door dezelfde functie worden gemaakt, kunnen de marges niet mooi worden aangepast aan de lengtes van de namen 
+	(de soortnamen zijn veel langer)
+- legenda datamaps wordt nu ook geupdate met behulp van jquery. 
+- tooltip moet nog worden aangepast
+- area component gaat eruit aangezien dat sterk beïnvloed wordt door aantal observaties (en de soortdichtheid kan nog steeds heel hoog zijn).
+
+dingen voor to do:
+	-- tooltip datamap 
+	-- tooltip species chart
+	-- zorgen dat de namen er niet constant afvallen bij de barcharts
+	-- Brachnis Murre (of iets dergelijks) staat er heel vreemd in
+	-- opmaak verbeteren

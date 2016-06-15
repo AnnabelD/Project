@@ -19,3 +19,9 @@
 .barchartdiv rect{
 	fill: orange;
 }
+
+#dropdown, #map_species {
+	display: inline-block;
+	vertical-align: top;
+}
+

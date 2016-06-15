@@ -16,37 +16,29 @@
 		<script src="birds_europe.js"></script>
 		<script src="country_codes2.js"></script>
 		<script src="map_functions.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- 		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.5/datamaps.world.min.js"></script>
-		<script src="//d3js.org/d3-queue.v2.min.js"></script>
-		<script src="birds_europe.js"></script>
-		<script src="country_codes.js"></script>
-		<script src="map_functions.js"></script>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-		 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+		
 	</head>
 	<body>
 		<h1>Breeding Birds in Europe</h1>
 		<div class="container">
-			<input type="button" value="area" id="area_button" />
 			<input type="button" value="species" id="species_button"/>
 			<input type="button" value="Total observations" id="total_obs_button"/>
 			<div class="row">
 				<div class="col-md-6">
 					<div id="map" style="position: relative; width: 560px; height: 500px;"></div>
+					<div class="row">
+						<br><br><br>
+						<p>Several different views can be selected for the map: total number of species observed in a country, total number of observations or the total number of species divided by the area of the country.
+						The species map shows that there is no great difference between countries concerning the biodiversity of breeding birds. Only the countries at the edges of europe
+						show less diverse observations. However the total number of observations within these countries was rather low.</p>
+					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="row">
@@ -58,18 +50,13 @@
 				</div>					
 			</div>
 			<br>
+			
+			<br>
 			<div class="row">
-				<p>Several different views can be selected for the map: total number of species observed in a country, total number of observations or the total number of species divided by the area of the country.
-					The species map shows that there is no great difference between countries concerning the biodiversity of breeding birds. Only the countries at the edges of europe
-					show less diverse observations. However the total number of observations within these countries was rather low.</p>
+				<div id="dropdown"></div>
+				<input type="button" value="Create barchart for species" id="species_div_submit"/>
 			</div>
-			<div class="row">
-				<input type="dropdown" placeholder="species" id="genus_div"/>
-				<input type="button" value="Create barchart for species" id="genus_div_submit"/>
-			</div>
-
-			<div id="select">Species</div>
-
+			<br>
 			<div class="row">
 				<div id="map_species" style="position: relative; width: 300px; height: 250px;"></div>
 				<svg class="barchartdiv"></svg>

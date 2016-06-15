@@ -1,18 +1,20 @@
 /* Annabel Droste */
 /* Europakaart Datamaps */
-/* nog niets gedaan aan opmaak, en sommige functies moeten slimmer kunnen zodat niet twee keer hetzelfde hoeft */
-// engelse comments
 
+// load the data
 d3_queue.queue()
 	.defer(d3.json,"landdeelfinalnone.json")
-	.defer(d3.json,"area.json")
+	/* .defer(d3.json,"area.json") */
 	.await(start);
 
 // margins barchart
-var margin = {top: 20, right: 20, bottom: 100, left: 70};
+var margin = {top: 25, right: 20, bottom: 100, left: 70};
+var species_margin_bottom = 180;
 var barwidth_norm = 20;
 var height = 350 - margin.top - margin.bottom;
 var width = 400 - margin.right - margin.left;
+var legendWidth = 30;
+var legendHeight = 75;
 
 // barchart genus
 var y = d3.scale.linear()
@@ -29,23 +31,22 @@ var tip = d3.tip()
 		return '<span>' + '<a href="' + link_wiki + '">' + "More info" + '</a> ' + '</span>';
 	});
 
+// tooltip species chart
 var div_tip = d3.tip()
 	.attr('class', 'tip')
 	.html(function(d){
-		return '<span>' + "All observations: " + d.total + '</span>';
+		return '<span>' + "Observations: " + d.number + '</span>';
 	});
 
-function start(error, data, area){
+/* Load the data, enable the interactive components that are included in the html (buttons etc.) and create the start page  */
+function start(error, data){
 	if (error){
 		alert(error);
 	}
-
-	var data_format = {}
-	var area_format = {}
-	area.forEach(function(d){
-		area_format[d.country] = +d.area;
-	});
 	
+	var data_format = {}
+	
+	// process the data and make sure it is in the right structure
 	for (var i in data){
 		// guernsey and isle of man create errors with the high resolution datamap (the non-high resolution functioned okay). 
 		// Isle of Man is the last entry, so a break must occur 
@@ -61,9 +62,8 @@ function start(error, data, area){
 			if (k.name == data[i].country){
 				data[i].name = data[i].country;
 				data[i].country = k.iso;
-				data_format[data[i].country] = {fillKey: key(area_format[data[i].name], data[i].number_species),
+				data_format[data[i].country] = {fillKey: key("species", data[i].number_species),
 				"name": data[i].name,
-				"area":area_format[data[i].name],
 				"observations": data[i].observation,
 				"number": data[i].number_species,
 				"total": data[i].total
@@ -71,7 +71,8 @@ function start(error, data, area){
 			}
 		});
 	}
-
+	
+	// datamap of the world zoomed in on Europe that allows an overview and is clickable to select a country
 	var map = new Datamap({
 		scope: 'world',
 		element: document.getElementById('map'),
@@ -88,18 +89,17 @@ function start(error, data, area){
 			projection: projection
 			};
 		},
-		fills: {'< 25 species': '#f1eef6',
-				'< 50 species': '#bdc9e1',
-	            '< 75 species': '#74a9cf',
-	            '< 100 species': '#2b8cbe',
-	            '< 125 species': '#045a8d',
+		fills: {'<60 species': '#f1eef6',
+				'<160 species': '#bdc9e1',
+	            '<240 species': '#74a9cf',
+	            '<320 species': '#2b8cbe',
+	            '<400 species': '#045a8d',
 				'no data': 'grey',
 	            defaultFill: 'grey'}, 
 		data: data_format,
 		geographyConfig: {
 	        	highlightFillColor:	'#7ddc1f',
 	        	popupTemplate: function(geo, data, area_format) {
-                // tooltip
 				if (!data) { return[ '<div class="hoverinfo">',
                     '<strong>', geo.properties.name, '</strong>',
                     '<br><strong>', "No data", '</strong>',
@@ -107,6 +107,7 @@ function start(error, data, area){
                 return ['<div class="hoverinfo">',
                     '<strong>', geo.properties.name, '</strong>',
                     '<br>Total observations: <strong>', data.total, '</strong>',
+					'<br>Number of species: <strong>', data.number, '</strong>',
                     '</div>'].join('');
 	        	}
 		},
@@ -117,6 +118,7 @@ function start(error, data, area){
 		}
 	});
 	
+	// datamap that shows where a single species is present. defaultfill is grey, only after a species has been entered does this change
 	var species_map = new Datamap({
 			scope: 'world',
 			element: document.getElementById('map_species'),
@@ -141,7 +143,6 @@ function start(error, data, area){
 			geographyConfig: {
 					highlightFillColor:	'#7ddc1f',
 					popupTemplate: function(geo, data, area_format) {
-					// tooltip
 					if (!data) { return[ '<div class="hoverinfo">',
 						'<strong>', geo.properties.name, '</strong>',
 						'<br><strong>', "No data", '</strong>',
@@ -152,44 +153,57 @@ function start(error, data, area){
 					}
 			}
 		});
-		
+	
+	map.legend();
+	species_map.legend();
+	// colors the map by the total number of species per country
 	var species_button = document.getElementById("species_button");
-	species_button.addEventListener("click", function(){ colourMap(map, data_format, 0);});
+	species_button.addEventListener("click", function(){ colourMap(map, data_format, "species");
+	selectLegend("species")});
 	
-	var area_button = document.getElementById("area_button");
-	area_button.addEventListener("click", function(){ colourMap(map, data_format, 1);});
-	
+	// colors the map by the total number of observations per country
 	var total_button = document.getElementById("total_obs_button");
-	total_button.addEventListener("click", function(){ colourMap(map, data_format, 2);});
+	total_button.addEventListener("click", function(){ colourMap(map, data_format, "observations");
+	selectLegend("observations");});
 	
+	// create a list of all the species in the dataset that can be used by the dropdown-menu
+	var species_list = getSpeciesNames(data_format).sort();
 	
-	var genus_divbutton = document.getElementById("genus_div_submit");
-	genus_divbutton.addEventListener("click", function(){ 
-		var genus_divchart = document.getElementById("genus_div");
-		diversity(data_format, genus_divchart.value, species_map);});
-		
-	var species_list = getSpeciesNames(data_format);
-	
-	/* var dropdown = d3.select("select")
-		.append(select)
+	var dropdown = d3.select("#dropdown")
+		.append("select")
+		.attr("id", "dropdown_options")
 		.attr("class", "selectpicker")
-		.attr("data-live-search","true") */
+		.attr("data-live-search","true")
+		.style("display", "none");
+		
+	species_list.forEach(function(d){
+		d3.select("#dropdown_options")
+			.append("option")
+			.text(d);
+	});
+	
+	$('.selectpicker').selectpicker({
+		style: 'btn-info',
+		size: 4
+	});
+	
+	// allows the user to type in a pecies and draws the barchart for that species and colors the species map 
+	var species_divbutton = document.getElementById("species_div_submit");
+	species_divbutton.addEventListener("click", function(){ 
+		diversity(data_format, $("#dropdown_options").val(), species_map);});
 }
 
-/* Colourmap with for species, genus or one species */
-function colourMap(map, data_format, area){
+/* updates the map for species or total observations */
+function colourMap(map, data_format, type){
 	var codes = Object.keys(data_format);
 	var new_data_format = data_format;
-	console.log(codes);
 	
+	// create new data_format to change the fillKey and to select the correct data to be entered in the fillKey
 	for (var i = 0, len = codes.length; i < len; i++){
-		console.log(codes[i]);
-		if (area == 1){ var new_area = data_format[codes[i]].area; var interest = data_format[codes[i]]["number"]}
-		else if (area == 2){var new_area = 2; var interest = data_format[codes[i]].total}
-		else { var new_area = 0; var interest = data_format[codes[i]]["number"]}
-		new_data_format[codes[i]] = {fillKey: key(new_area, interest),
+		if (type == "observations"){ var interest = data_format[codes[i]].total}
+		else { var interest = data_format[codes[i]]["number"]}
+		new_data_format[codes[i]] = {fillKey: key(type, interest),
 			"name": data_format[codes[i]].name,
-			"area": data_format[codes[i]].area,
 			"observations": data_format[codes[i]].observations,
 			"number": data_format[codes[i]].number, 
 			"total": data_format[codes[i]].total
@@ -198,8 +212,32 @@ function colourMap(map, data_format, area){
 	map.updateChoropleth(new_data_format);
 }
 
-/* Function that draws the chart that shows up if a country is clicked and shows all the genus/species observed in that country.. 
-	Het is nog niet gelukt om de assen goed te krijgen, bovendien wordt de chart voor sommige landen veel te breed */
+/* Selects the scales and correct labels for the legend */
+function selectLegend(type){
+	var scaleSpecies = [0, 60, 160, 240, 320, 400];
+	var scaleObservations = [0, 6000, 12000, 18000, 24000, 30000];
+	
+	if (type == "observations"){
+		updateLegendLabels(scaleObservations, ' obs.: ');
+	}
+	if (type == "species"){
+		updateLegendLabels(scaleSpecies, ' species: ');
+	}
+}
+
+/* Selects the html datamap legend labels and alters them with jquery. */
+function updateLegendLabels(array, unit){
+	var name = d3.select("#map").selectAll("dt");
+	for (var i = 0, len = array.length - 1; i<len; i++){
+		console.log(name[0][i]);
+		$(name[0][i]).replaceWith('<dt><' + array[i+1] + unit + '</dt>');
+	}
+}
+
+/* Function that draws the chart that shows up if a country is clicked and shows all the top ten genus observed in that country. The same function is called
+again if a bar in the barchart is clicked. Then it shows all the species in the genus that are present in the country. If the user hovers over a bar, a link
+to the wikipedia is accessible in the tooltip. 
+	 */
 function drawChart(data, name, type){
 	if (type == "genus"){
 		tip.hide();
@@ -207,31 +245,30 @@ function drawChart(data, name, type){
 		var data_key = "genus";
 		var y_valuename = "details";
 		var y_valuename2 = "length";
-		var barwidth = barwidth_norm;
-		var old_spec_chart = d3.select(".barchartspecies")
-			.selectAll("g").remove();
 		var y_axis_label = "species in genus";
+		var bottom = margin.bottom;
 	};
 	
 	if (type == "species"){
 		var data_array = data.details;
 		var data_key = "species";
 		var y_valuename = "number";
-		var barwidth = 1.5 * barwidth_norm;
-		var old_spec_chart = d3.select(".barchartspecies")
-			.selectAll("g").remove();
 		var y_axis_label = "observations";
+		var bottom = species_margin_bottom;
 	};
 
-	// remove old chart 
+	// remove old charts 
 	var old_chart = d3.select(".barchart" + type)
 		.selectAll("g").remove()
 		.selectAll(".axis").remove();
+	
+	var old_spec_chart = d3.select(".barchartspecies")
+		.selectAll("g").remove();
 		
 	// create new chart
 	var chart = d3.select(".barchart" + type)
 		.attr("width", width + margin.right + margin.left)
-		.attr("height", height + margin.bottom + margin.top)
+		.attr("height", height + bottom + margin.top)
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," +  margin.top + ")");
 		
@@ -350,7 +387,7 @@ function diversity(data_format, species_name, species_map){
 
 	var div_chart = d3.select(".barchartdiv")
 		.attr("width", barwidth_norm * countries.length + margin.right + margin.left)
-		.attr("height",  height + margin.bottom + margin.top)
+		.attr("height",  height + species_margin_bottom + margin.top)
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," +  margin.top + ")");
 		
@@ -402,27 +439,18 @@ function diversity(data_format, species_name, species_map){
 	speciesMap(countries, data_format, species_map);
 };
 
-/* Colors the countries based on the density of breeding birds species */
-function key(area, total){
+/* Colors the countries based on the the species per country or the total number of observations */
+function key(type, total){
 	// species
-	if (area == 0){
-		var scale = [0, 60, 160, 240, 320, 400];
-		var value = total;
-	}
+	if (type == "species"){ var scale = [0, 60, 160, 240, 320, 400];}
+	
 	// observations
-	else if (area == 2){
-		var scale = [0, 6000, 12000, 18000, 24000, 30000];
-		var value = total;
-	}
-	// area
-	else{
-		var scale = [0, 0.00001, 0.0001, 0.001, 0.1, 1];
-		var value = total/area;
-	}
-	var colors = ['< 25 species','< 50 species','< 75 species','< 100 species','< 125 species'];
+	else if (type == "observations"){var scale = [0, 6000, 12000, 18000, 24000, 30000];};
+
+	var colors = ['<60 species','<160 species','<240 species','<320 species','<400 species'];
 
 	for (var h = 1, len = scale.length; h < len; h++){
-		if (value >= scale[h - 1] && value < scale[h]){
+		if (total >= scale[h - 1] && total < scale[h]){
 			return colors[h - 1];
 		}
 	}
