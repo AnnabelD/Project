@@ -16,6 +16,7 @@
 		<script src="birds_europe.js"></script>
 		<script src="country_codes2.js"></script>
 		<script src="map_functions.js"></script>
+		<script src="barcharts.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -26,10 +27,19 @@
 		
 	</head>
 	<body>
-		<h1>Breeding Birds in Europe</h1>
-		<div class="container">
-			<input type="button" value="species" id="species_button"/>
-			<input type="button" value="Total observations" id="total_obs_button"/>
+		<div class="container" id="introduction">
+			<h1>Breeding Birds in Europe</h1>
+			<div class="row">
+				<p>Every spring birds work hard to build their nests, perhaps in your garden like the robin or on your roofs like the Eurasian Oystercatcher has started to do in 
+				Amsterdam. In the dunes, the forests or the tundras. All over Europe birds make their nests. Here the dataset of the EBCC Atlas of the European Breeding Birds 
+				(data from 1972-1995) has been visualised to show what the most common genuses were per country species-wise. Which countries
+				score high on the number of breeding species, which countries made a lot of observations. If you are curious in which countries a certain species is present
+				you can select that species in the dropdown menu.</p>
+			</div>
+		</div>
+		<div class="container" id="visuals"> 
+			<input type="button" value="species" id="speciesButton"/>
+			<input type="button" value="Total observations" id="totalObsButton"/>
 			<div class="row">
 				<div class="col-md-6">
 					<div id="map" style="position: relative; width: 560px; height: 500px;"></div>
@@ -54,7 +64,7 @@
 			<br>
 			<div class="row">
 				<div id="dropdown"></div>
-				<input type="button" value="Create barchart for species" id="species_div_submit"/>
+				<input type="button" value="Create barchart for species" id="speciesDivSubmit"/>
 			</div>
 			<br>
 			<div class="row">

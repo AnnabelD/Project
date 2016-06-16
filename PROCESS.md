@@ -89,3 +89,10 @@ dingen voor to do:
 	-- zorgen dat de namen er niet constant afvallen bij de barcharts
 	-- Brachnis Murre (of iets dergelijks) staat er heel vreemd in
 	-- opmaak verbeteren
+
+## Dag 14
+- ik heb de functies gescheiden in aparte bestanden op barchart of map functies en een basis bestand (birds_europe.js) omdat dat me de duidelijkste onderverdeling leek. 
+- Het is niet mooi dat er telkens zoveel met een functie mee wordt gegeven, maar het maakt de verwerking van de data wel een stuk simpeler
+- (bijna) alles verandert in camelCase
+- Namen vallen er niet meer af bij barcharts door de marges van de speciesMaps te vergroten
+- scales globale variabelen gemaakt omdat er dan minder if-statements nodig zijn. 

@@ -4,6 +4,7 @@
 	stroke: black;
 	fill: none;
 } */
+
 .bars{
 	fill:blue;
 }
@@ -25,3 +26,15 @@
 	vertical-align: top;
 }
 
+#introduction{
+	background-color: #FFEC44;
+	text-align: center;
+}
+
+#visuals{
+	background-color: #FFFFCC;
+}
+
+body{
+	background-color: #FFFFCC;
+}
