@@ -27,14 +27,32 @@
 }
 
 #introduction{
-	background-color: #FFEC44;
 	text-align: center;
+	color: #000033;
+	font-weight: bold;
+	background-image: url("img/birdflight3.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
 }
 
 #visuals{
 	background-color: #FFFFCC;
 }
 
-body{
-	background-color: #FFFFCC;
+h1{
+	color: #000099 !important;
+}
+
+.axis{
+	fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+	shape-rendering: crispEdges;
 }

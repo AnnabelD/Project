@@ -52,6 +52,11 @@ function updateLegendLabels(array, unit){
 	}
 }
 
+function changeColorButton(clickedButton, resetButton){
+	clickedButton.style.backgroundColor = "#3182bd";
+	resetButton.style.backgroundColor = "#deebf7";
+}
+
 
 /* Second map functions (the map that reacts to the dropdown menu) */
 /* Colors the countries where the species is present. */

@@ -156,14 +156,20 @@ window.onload = function (){
 	map.legend();
 	speciesMap.legend();
 	
-	// colors the map by the total number of species per country
+	// creates the two buttons
 	var speciesButton = document.getElementById("speciesButton");
+	var totalButton = document.getElementById("totalObsButton");
+	
+	changeColorButton(speciesButton, totalButton);
+	
+	// colors the map by the total number of species per country
 	speciesButton.addEventListener("click", function(){ colourMap(map, dataFormat, scaleSpecies);
+	changeColorButton(speciesButton, totalButton);
 	selectLegend("species")});
 	
 	// colors the map by the total number of observations per country
-	var totalButton = document.getElementById("totalObsButton");
 	totalButton.addEventListener("click", function(){ colourMap(map, dataFormat, scaleObservations);
+	changeColorButton(totalButton, speciesButton);
 	selectLegend("observations");});
 	
 	// create a list of all the species in the dataset that can be used by the dropdown-menu
