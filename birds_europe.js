@@ -28,14 +28,14 @@ var tip = d3.tip()
 	.attr('class', 'tip')
 	.html(function(d){
 		var link_wiki = "https://en.wikipedia.org/wiki/" + d.name;
-		return '<span>' + '<a href="' + link_wiki + '">' + "More info" + '</a> ' + '</span>';
+		return '<span>' + '<a href="' + link_wiki + '" target="_blank">' + "More info" + '</a> ' + '</span>';
 	});
 
 // tooltip species chart
 var divTip = d3.tip()
 	.attr('class', 'tip')
 	.html(function(d){
-		return '<span>' + "Observations: " + d.number + '</span>';
+		return '<span>' + d.number + '</span>';
 	});
 
 /* Load the data, enable the interactive components that are included in the html (buttons etc.) and create the start page  */
@@ -123,9 +123,9 @@ window.onload = function (){
 		element: document.getElementById('map_species'),
 		setProjection: function(element) {
 			var projection = d3.geo.orthographic()
-				.center([1, 24])
-				.rotate([-13, -27])
-				.scale(430)
+				.center([3, 23])
+				.rotate([-11, -24])
+				.scale(410)
 				.translate([element.offsetWidth / 2, element.offsetHeight / 2]);
 			var path = d3.geo.path()
 				.projection(projection);
@@ -134,8 +134,8 @@ window.onload = function (){
 			projection: projection
 			};
 		},
-		fills: {'present': '#d95f0e',
-				'absent': 'grey',
+		fills: {'present': '#FF6600',
+				'absent': '#003399',
 				'no data': 'grey',
 				defaultFill: 'grey'}, 
 		data: dataFormat,

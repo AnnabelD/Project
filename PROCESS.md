@@ -96,3 +96,12 @@ dingen voor to do:
 - (bijna) alles verandert in camelCase
 - Namen vallen er niet meer af bij barcharts door de marges van de speciesMaps te vergroten
 - scales globale variabelen gemaakt omdat er dan minder if-statements nodig zijn. 
+
+## Dag 15
+- laden vande pagina gaat een stuk trager (achtergrondfoto? verschillende scriptbestanden?)
+
+## Dag 16
+- op zich is de tijd van het laden nog wel acceptabel, vooral doordat de tekst wel al te zien is
+- assen verbeterd, maar de eerste bar wil nog niet een stukje van de y-as komen te staan
+- geprobeerd background-image op opacity 0.5 te zetten om de leesbaarheid te verhogen, maar dan wordt ook de tekst meteen vaag. Lukt niet om vervolgens de <p> en <text> elementen
+	met css opacity op 1 te zetten.

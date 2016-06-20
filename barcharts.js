@@ -3,6 +3,11 @@
 * Functions to make the barcharts
  */
  
+ // 1e barchart van de as af zetten
+ // laatste tick weglaten of getal erbij zetten (nice of ...)
+ // tooltip species alleen 1 getal
+// opmaak titel verbeteren 
+ 
  /* Function that draws the chart that shows up if a country is clicked and shows all the top ten genus observed in that country. The same function is called
 again if a bar in the barchart is clicked. Then it shows all the species in the genus that are present in the country. If the user hovers over a bar, a link
 to the wikipedia is accessible in the tooltip. 
@@ -63,6 +68,7 @@ function drawChart(data, name, type){
 	
 	var maxData = d3.max(dataDomain, function(d){ return d.number});
 	y.domain([0, maxData + 2]);
+	y.nice();
 	
 	chart.call(tip);
 		
@@ -140,7 +146,8 @@ function diversity(dataFormat, speciesName, speciesMap){
 	
 	var yDiv = d3.scale.linear()
 		.domain([0, d3.max(numberSpecies, function(d){ return d.number;}) + 2])
-		.range([height, 0]);
+		.range([height, 0])
+		.nice();
 
 	var xDiv = d3.scale.ordinal()
 		.domain(countries)

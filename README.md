@@ -41,3 +41,9 @@ Als ik tijd over heb, is het leuk om ook te kijken of de broedperiode verschilt 
 Op [sovon.nl](https://www.sovon.nl/nl/content/vogelsoorten) staat een visualisatie voor Nederland met een verspreidingskaart en trendlijnen zijn gevisualiseerd. De visualisaties op sovon.nl hebben geen interactief element.
 Door de broedvogelpopulaties op Europeesniveau te bekijken wordt het hopelijk makkelijker om landen te vergelijken en door interactie toe te staan zullen mijn visualisaties een stuk
 explorerender worden. Helaas is het niet mogelijk om de trendlijnen in Europa te laten zien, aangezien er in de dataset niet aparte data zijn toegevoegd, alleen de tijdperiode 1972-1995. 
+
+
+#### Licences
+The shapefile TM_WORLD_BORDERS-0.3 used to determine which observations were made in which country (thus the conversion of coordinated to countrynames) was provided by http://thematicmapping.org/.
+The python code used to translate a coordinate (latitude, longitude) to a countryname was provided by https://github.com/che0/countries. 
+The code to obtain all the three-letter countrycodes used by datamaps was written on stackoverflow: http://stackoverflow.com/questions/25044145/datamaps-get-list-of-country-codes 

@@ -26,6 +26,10 @@
 	vertical-align: top;
 }
 
+#introduction p, text{
+	opacity: 1;
+}
+
 #introduction{
 	text-align: center;
 	color: #000033;
@@ -33,11 +37,9 @@
 	background-image: url("img/birdflight3.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% auto;
+	opacity: 0.5;
 }
 
-#visuals{
-	background-color: #FFFFCC;
-}
 
 h1{
 	color: #000099 !important;
