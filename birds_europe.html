@@ -12,10 +12,6 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.5/datamaps.all.hires.min.js"></script>	
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-		<script src="birds_europe.js"></script>
-		<script src="country_codes2.js"></script>
-		<script src="map_functions.js"></script>
-		<script src="barcharts.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
 		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -26,50 +22,63 @@
 		
 	</head>
 	<body>
-		<div class="container" id="introduction">
-			<br>
-			<h1>Breeding Birds in Europe</h1>
-			<div class="row">
-				<p class="pull-left" style="float:left">Every spring birds work hard to build their nests, perhaps in your garden like the robin or on your roofs like the Eurasian Oystercatcher has started to do in 
-				Amsterdam. In the dunes, the forests or the tundras. All over Europe birds make their nests. Here the dataset of the EBCC Atlas of the European Breeding Birds 
-				(data from 1972-1995) has been visualised to show what the most common genuses were per country species-wise. Which countries
-				score high on the number of breeding species, which countries made a lot of observations. If you are curious in which countries a certain species is present
-				you can select that species in the dropdown menu.</p>
+		<div id="wrapper">
+			<div id="backgroundIntro">
+			</div>
+			<div class="container" id="introduction">
+				<h1>Breeding Birds in Europe</h1>
+				<div class="row">
+					<p>Every spring birds work hard to build their nests, perhaps in your garden like the robin or on your roofs like the Eurasian Oystercatcher has started to do in 
+					Amsterdam. In the dunes, the forests or the tundras. All over Europe birds make their nests. Here the dataset of the EBCC Atlas of the European Breeding Birds 
+					(data from 1972-1995) has been visualised to show what the most common genuses were per country species-wise. Which countries
+					score high on the number of breeding species, which countries made a lot of observations. If you are curious in which countries a certain species is present
+					you can select that species in the dropdown menu.</p>
 				
-			</div>
-		</div>
-		<div class="container" id="visuals"> 
-			<input type="button" value="species" id="speciesButton"/>
-			<input type="button" value="Total observations" id="totalObsButton"/>
-			<div class="row">
-				<div class="col-md-6">
-					<div id="map" style="position: relative; width: 560px; height: 500px;"></div>
-					<div class="row">
-						<br><br><br>
-						<p>Several different views can be selected for the map: total number of species observed in a country, total number of observations or the total number of species divided by the area of the country.
-						The species map shows that there is no great difference between countries concerning the biodiversity of breeding birds. Only the countries at the edges of europe
-						show less diverse observations. However the total number of observations within these countries was rather low.</p>
-					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<svg class="barchartgenus"></svg>
-					</div>
-					<div class="row">
-						<svg class="barchartspecies"></svg>
-					</div>
-				</div>					
-			</div>
-			<br>
-			<div class="row">
-				<div id="dropdown"></div>
-				<input type="button" value="Create barchart for species" id="speciesDivSubmit"/>
-			</div>
-			<br>
-			<div class="row">
-				<div id="map_species" style="position: relative; width: 300px; height: 250px;"></div>
-				<svg class="barchartdiv"></svg>
 			</div>
 		</div>
+		<div id="backgroundColor">
+			<br>
+			<div class="container" id="visuals"> 
+				<input type="button" value="species" id="speciesButton"/>
+				<input type="button" value="Total observations" id="totalObsButton"/>
+				<div class="row">
+					<div class="col-md-6">
+						<div id="map"></div>
+						<div class="row">
+							<br><br><br>
+							<p>Two different views can be selected for the map: total number of species observed in a country or the total number of observations.
+							The species map shows that especially Russia has a high number of breeding bird species. Russia is the only country with more than 300 species. However the number of observations made in a country differs greatly. It ranges from 47 in Kazachstan to 29 468 observations in France. 
+							Therefore the number of observations in these visualisations does not say much about the abundance of the species, only about the presence/absence of a species in a country.
+							In order to explore what type of birds occur much in a country, the top ten genuses with the most species can be viewed by clicking a country. If a bar from a genus is clicked the specific
+							species are shown in a bargraph. More information about the genus or species can be obtained through the link to the wikipedia site on hovering above a bar.</p>
+							<p> By selecting a bird species in the dropdownmenu below, the countries where a specific bird breeds can be viewed. In the map it is clearly visible that some species
+							only breed in the northern areas like the Siberian Jay, whereas other species prefer the mediterranean climate better. </p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row barcharts">
+							<svg class="barchartgenus"></svg>
+						</div>
+						<div class="row barcharts">
+							<svg class="barchartspecies"></svg>
+						</div>
+					</div>					
+				</div>
+				<div class="row speciesVisualisation">
+					<div id="dropdown"></div>
+					<input type="button" value="Create barchart for species" id="speciesDivSubmit"/>
+				</div>
+				<br>
+				<div class="row speciesVisualisation">
+					<div id="map_species"></div>
+					<svg class="barchartdiv"></svg>
+				</div>
+			</div>
+		</div>
+		<script src="birds_europe.js"></script>
+		<script src="country_codes2.js"></script>
+		<script src="map_functions.js"></script>
+		<script src="barcharts.js"></script>
 	</body>
 </html>

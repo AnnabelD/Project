@@ -105,3 +105,15 @@ dingen voor to do:
 - assen verbeterd, maar de eerste bar wil nog niet een stukje van de y-as komen te staan
 - geprobeerd background-image op opacity 0.5 te zetten om de leesbaarheid te verhogen, maar dan wordt ook de tekst meteen vaag. Lukt niet om vervolgens de <p> en <text> elementen
 	met css opacity op 1 te zetten.
+	
+## Dag 17
+- tekst intro opacity 1 zetten op de een of andere manier, gelukt door het in een andere div te zetten en de positie absolute (positie van introductie op relative). 
+- titel van top genus aanpassen
+- achter more info een div plakken zodat het beter leesbaar wordt (of een andere tooltip)
+- tekst invoegen op de pagina
+- inzoomen gaat redelijk. Heb nu de background-size: 100% 100% gezet waardoor wel het hele element bedekt is, maar de foto wel enigszins vervormt. Ik heb het idee
+	dat het wel beter is dan wit of de backgroundcolor van de visualisaties te extenden naar de introductie. 
+- zet elementen in het midden van columns
+- processing scripts aan het eind gezet doordat ik het idee heb dat de pagina dan sneller iets laat zien. De andere scripts staan nog bovenaan aangezien sommige 
+	daarvan nodig zijn voor de opmaak. 
+

@@ -1,13 +1,7 @@
-/* Annabel Droste */
-
-/* .axis{
-	stroke: black;
-	fill: none;
-} */
-
-.bars{
-	fill:blue;
-}
+/* 
+* Annabel Droste 
+* Stylesheet
+*/
 
 .barchartspecies rect{
 	fill: #00CC00;
@@ -26,29 +20,60 @@
 	vertical-align: top;
 }
 
-#introduction p, text{
-	opacity: 1;
+#wrapper{
+	position: relative;
 }
 
 #introduction{
+	position: relative;
 	text-align: center;
 	color: #000033;
 	font-weight: bold;
+}
+
+#backgroundIntro{
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	top: 0;
 	background-image: url("img/birdflight3.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% auto;
+	background-size: 100% 100%;
 	opacity: 0.5;
 }
 
+#backgroundColor{
+	background-color: #FFFFC9;
+}
+
+.speciesVisualisation, 
+.barcharts{
+	width: 95% !important;
+	margin: auto !important;
+}
+
+#map{
+	position: relative; 
+	width: 560px; 
+	height: 420px;
+	margin: auto;
+}
+
+#map_species{
+	position: relative; 
+	width: 320px; 
+	height: 240px;
+}
 
 h1{
 	color: #000099 !important;
 }
 
-.axis{
+.axis path,
+.axis line {
 	fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
 .axis text {
@@ -56,5 +81,5 @@ h1{
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-	shape-rendering: crispEdges;
 }
+

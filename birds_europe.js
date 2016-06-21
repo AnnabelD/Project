@@ -5,13 +5,14 @@
 
 // margins barchart
 var margin = {top: 25, right: 20, bottom: 100, left: 70};
-var speciesMarginBottom = 180;
+var speciesMarginBottom = 205;
 var barwidthNorm = 20;
 var height = 350 - margin.top - margin.bottom;
 var width = 400 - margin.right - margin.left;
 var legendWidth = 30;
 var legendHeight = 75;
 
+// the two scales used for the maps and legendas for respectively species and observations
 var scaleSpecies = [0, 60, 160, 240, 320, 400];
 var scaleObservations = [0, 6000, 12000, 18000, 24000, 30000];
 
@@ -123,9 +124,9 @@ window.onload = function (){
 		element: document.getElementById('map_species'),
 		setProjection: function(element) {
 			var projection = d3.geo.orthographic()
-				.center([3, 23])
-				.rotate([-11, -24])
-				.scale(410)
+				.center([8, 28])
+				.rotate([-7, -24])
+				.scale(450)
 				.translate([element.offsetWidth / 2, element.offsetHeight / 2]);
 			var path = d3.geo.path()
 				.projection(projection);
