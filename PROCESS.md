@@ -39,9 +39,9 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 - totale dataset in tweeën gesplitst
 - Van tweede deel nu een .txt (countriescoodump2.txt) met alle landen op volgorde
 - ook scientific name meenemen in dataset zodat het overzichtelijker wordt (ipv 200 soorten per land, kan je ze nu onderverdelen in genus)
-- Misschien een barchart maken met geni voor een land, als er dan op een genus wordt geklikt worden de soorten zichtbaar. Zorgt nog steeds voor te grote barchart
-- Barchart geni met slider? Top 10 geni die voorkomen? Vervolgens klikken op Barchart waardoor tweede barchart te voorschijn komt
-- Diversiteit Europese landen verschilt nauwelijk (227 geni per land, 499 soorten) alleen azerbaijan, kazachstan vallen erbuiten (gelukkig anders was er zeker iets mis gegaan met dataverwerking)
+- Misschien een barchart maken met generavoor een land, als er dan op een genus wordt geklikt worden de soorten zichtbaar. Zorgt nog steeds voor te grote barchart
+- Barchart generamet slider? Top 10 generadie voorkomen? Vervolgens klikken op Barchart waardoor tweede barchart te voorschijn komt
+- Diversiteit Europese landen verschilt nauwelijk (227 generaper land, 499 soorten) alleen azerbaijan, kazachstan vallen erbuiten (gelukkig anders was er zeker iets mis gegaan met dataverwerking)
 - resultaat om te vertellen: eu diversiteit is gelijk d.m.v. species map and genus map. 
 - Misschien een visualisatie-idee: 2 landen selecteren, vervolgens komt eruit welke soorten verschillen (wel of niet aanwezig in het ene land, of vaker/minder aanwezig?)
 
@@ -49,7 +49,7 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 - barchart gemaakt voor 1 soort voor alle landen (pas later bedacht dat ik dat eigenlijk in de kaart wilde laten zien)
 - geëxperimenteerd met bootstrap, lijkt wel handig voor de positionering van de elementen
 - genus en specieschart voor 1 land gemaakt, sorteren gaat nog fout (x-waarden gaan niet mee), dus heb dat even uitgeschakeld
-- barchart geni is nog veelste groot (specieschart laat alleen de soorten binnen een genus zien)
+- barchart generais nog veelste groot (specieschart laat alleen de soorten binnen een genus zien)
 - Userinput van text gemaakt, maar is case sensitive, dus dat moet misschien anders. (Dropdownmenu misschien?)
 - Uitvogelen hoe je makkelijk een kaart kan updaten. 
 
@@ -84,11 +84,11 @@ Python script veranderen of in js? -> js werkt prima, maar het is sneller(qua la
 - area component gaat eruit aangezien dat sterk beïnvloed wordt door aantal observaties (en de soortdichtheid kan nog steeds heel hoog zijn).
 
 dingen voor to do:
-	-- tooltip datamap 
-	-- tooltip species chart
-	-- zorgen dat de namen er niet constant afvallen bij de barcharts
-	-- Brachnis Murre (of iets dergelijks) staat er heel vreemd in
-	-- opmaak verbeteren
+- tooltip datamap 
+- tooltip species chart
+- zorgen dat de namen er niet constant afvallen bij de barcharts
+- Brachnis Murre (of iets dergelijks) staat er heel vreemd in
+- opmaak verbeteren
 
 ## Dag 14
 - ik heb de functies gescheiden in aparte bestanden op barchart of map functies en een basis bestand (birds_europe.js) omdat dat me de duidelijkste onderverdeling leek. 
