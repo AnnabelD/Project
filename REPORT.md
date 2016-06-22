@@ -47,19 +47,16 @@ Alle barcharts hebben een schuin ticklabel op de x-as aangezien ik dat altijd ee
 ## Technisch design
 De basis van de visualisaties staat in birds_europe.js, de functies voor de barcharts staan in barcharts.js en de kaarten worden gekleurd door mapfunctions.js. 
 
+#### Visualisatie 1 en 2: kaart aantal soorten/observaties en top 10 genera en diens soorten
+De eerste kaart wordt meteen aangemaakt door window.onload functie. Hij staat standaard op species. Nadat de kaart is aangemaakt wordt de button gekleurd. Als er op een
+andere button wordt gedrukt, worden beide buttons meegegeven aan een functie die de kleur verandert, wordt de kaart gekleurd en de legenda verandert met behulp van jquery. 
+Het was tamelijk lastig (vond ik) om de legenda van de datamap te veranderen zonder zelf helemaal een legenda te definiëren. Ik heb de datamap functie map.legend() gebruikt om
+een legenda te tekenen. Hierdoor komen in de legenda altijd de fillKeys te staan. Doordat zowel soorten als observaties dezelfde datamap gebruiken en een andere schaal hebben, creëerde dat problemen. 
+Uiteindelijk was de oplossing redelijk simpel door de td elementen van de datamap te selecteren met jQuery en diens tekst met replaceWith te veranderen afhankelijk van de geklikte button. 
 
+Als er op een land geklikt wordt, wordt een functie aangeroepen om een barchart te maken. Deze functie krijgt als argumenten de landnamen en de observaties die in dat land zijn gedaan, mee.
+ 
 
-## Description of the Functionality
-This webpage allows the user to explore the European breeding bird dataset of the EBCC. These visualisations enable the user to get an overview
-of the dispersion of a single species. For instance if you would like to know where in Europe the osprey breeds, with the use of the dropdown menu it becomes visible easily. 
-Another visualisation shows the number of bird species breeding in a country, thus one can see that in Russia a lot of species have been spotted, whereas in ukraine
-about a hundred species less were observed. The user can click on a country which shows the ten genera with the most observed species in that country. When one of the bars is clicked
-all the species that are present in that genus and the country are plotted in a second barchart. Both barcharts contain a hover function that allows the user to look up
-more information through the wikipedia page of that species or genus. Thus there are two different anglepoints by which the user can explore the European breeding bird population: 
-either by country, or by species. 
-
-## Technical Design
-The basis of the visualisations is contained in the birds_euroge.js script, the functions for the barcharts are in barcharts.js and the maps are coloured by the functions in mapfunctions.js.
 
 #### Visualisations by Country
 The first map is linked to two buttons that allow the user to either see the total number of species or the total number of observations in a country. 
@@ -100,7 +97,7 @@ no estimation says even less about the actual number of birds, I decided to trea
 In het DESIGN.md was ik ervan uitgegaan dat er data (datums) waren ingevoerd bij de observaties maar dat bleek niet het geval. Daardoor zijn de visualisaties meer geconcentreerd 
 op verspreiding over landen i.p.v. trends. 
 
-####### Visualisatie 1 uit het DESIGN.md: Europese kaart broedvogels
+###### Visualisatie 1 uit het DESIGN.md: Europese kaart broedvogels
 Eerst had ik ook nog een oppervlakte component waardoor het bijvoorbeeld zichtbaar was dat Rusland i.v.m. zijn 
 oppervlakte weinig broedende vogelsoorten had. Dit is eruit gehaald doordat het niet waarheidsgetrouw is. Misschien broeden die soorten die in Rusland wel in elke kilometer, 
 en zitten ze in een ander, kleiner land helemaal niet overal. In dat geval lijkt het dat Rusland het slechter doet qua broedvogels terwijl dat eigenlijk niet het geval is. 
@@ -110,16 +107,16 @@ cirkels in te schatten. Mensen zijn er beter in om kleurschakeringen af te lezen
 Het idee om de verspreiding van 1 soort te visualiseren heb ik wel uitgevoerd maar in een andere kaart dan kaart met het aantal soorten en observaties aangezien het minder 
 interactie behoeft.
 
-####### Visualisatie 2: Piechart soortsamenstelling land
+###### Visualisatie 2: Piechart soortsamenstelling land
 Deze visualisatie is in tweeën gesplitst in de eindversie aangezien sommige landen meer dan 300 soorten heeft. Dat is niet in 1 piechart te visualiseren. In plaats van alle soorten
 worden eerst de 10 genera die de meeste soorten bevatten in dat land in een barchart gevisualiseerd. Op deze manier wordt inzichtelijk gemaakt wat voor type vogels veel voorkomen in landen. In Nederland zijn er bijvoorbeeld
 veel type mezen die hier broeden, terwijl Rusland juist meer soorten meeuwen kent. Als er op een van de bars met een genus wordt geklikt, worden de soorten binnen dat genus in een tweede
 visualisatie gevisualiseerd. De link die verschijnt als er boven een bar wordt gehoverd gaat naar de wikipediapagina van de desbetreffende soort/genus en stelt de gebruiker in staat om snel kennis op te doen over de genera en de soorten
 
-####### Visualisatie 3: Barchart biodiversiteit
+###### Visualisatie 3: Barchart biodiversiteit
 Ook dit is eruit gehaald aangezien het aantal observaties zo sterk verschilt tussen de verschillende landen. Het zou niet waarheidsgetrouw zijn om ze dan toch te vergelijken. 
 
-####### Visualisatie 4: Vergelijking tussen landen
+###### Visualisatie 4: Vergelijking tussen landen
 Oorspronkelijk wilde ik ook landen echt naast elkaar kunnen vergelijken. Ook deze visualisatie is eruitgehaald omdat het aantal observaties zo sterk verschilt tussen landen.
 
 

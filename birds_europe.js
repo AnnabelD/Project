@@ -4,7 +4,7 @@
 */
 
 // margins barchart
-var margin = {top: 25, right: 20, bottom: 100, left: 70};
+var margin = {top: 30, right: 40, bottom: 100, left: 70};
 var speciesMarginBottom = 205;
 var barwidthNorm = 20;
 var height = 350 - margin.top - margin.bottom;
@@ -26,7 +26,7 @@ var yAxis = d3.svg.axis()
 
 // tooltip species and genus chart connected to first map
 var tip = d3.tip()
-	.attr('class', 'tip')
+	.attr('class', 'tipExtra')
 	.html(function(d){
 		var link_wiki = "https://en.wikipedia.org/wiki/" + d.name;
 		return '<span>' + '<a href="' + link_wiki + '" target="_blank">' + "More info" + '</a> ' + '</span>';
@@ -89,11 +89,11 @@ window.onload = function (){
 			projection: projection
 			};
 		},
-		fills: {'<60 species': '#f1eef6',
-				'<160 species': '#bdc9e1',
-	            '<240 species': '#74a9cf',
-	            '<320 species': '#2b8cbe',
-	            '<400 species': '#045a8d',
+		fills: {'<60 species': '#c6dbef',
+				'<160 species': '#9ecae1',
+	            '<240 species': '#6baed6',
+	            '<320 species': '#3182bd',
+	            '<400 species': '#08519c',
 				'no data': 'grey',
 	            defaultFill: 'grey'}, 
 		data: dataFormat,

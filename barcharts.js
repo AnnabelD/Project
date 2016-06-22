@@ -4,11 +4,8 @@
  */
  
  // 1e barchart van de as af zetten
- // laatste tick weglaten of getal erbij zetten (nice of ...)
- // tooltip species alleen 1 getal
-// opmaak titel verbeteren 
  
- /* Function that draws the chart that shows up if a country is clicked and shows all the top ten genus observed in that country. The same function is called
+ /* Function that draws the chart that shows up if a country is clicked and shows all the top ten genera observed in that country. The same function is called
 again if a bar in the barchart is clicked. Then it shows all the species in the genus that are present in the country. If the user hovers over a bar, a link
 to the wikipedia is accessible in the tooltip. 
 	 */
@@ -21,6 +18,7 @@ function drawChart(data, name, type){
 		var yValuename2 = "length";
 		var yAxisLabel = "species in genus";
 		var bottom = margin.bottom;
+		var title = "Ten genera with most species in " + name;
 	};
 	
 	if (type == "species"){
@@ -29,6 +27,7 @@ function drawChart(data, name, type){
 		var yValuename = "number";
 		var yAxisLabel = "observations";
 		var bottom = speciesMarginBottom;
+		var title = "Breeding bird species in " + name;
 	};
 
 	// remove old charts 
@@ -123,7 +122,8 @@ function drawChart(data, name, type){
         .attr("x", (width / 2))             
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")   
-        .text(type + " in " + name);
+        /* .text(type + " in " + name) */
+		.text(title);
 }
 
 /* Draws the total observations per species. */

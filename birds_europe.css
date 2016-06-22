@@ -15,6 +15,22 @@
 	fill: orange;
 }
 
+.tipExtra{
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.tipExtra:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
 #dropdown, #map_species {
 	display: inline-block;
 	vertical-align: top;
@@ -25,6 +41,7 @@
 }
 
 #introduction{
+	width: 60%;
 	position: relative;
 	text-align: center;
 	color: #000033;
@@ -43,7 +60,7 @@
 }
 
 #backgroundColor{
-	background-color: #FFFFC9;
+	background-color: #F0F0F0;
 }
 
 .speciesVisualisation, 
