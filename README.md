@@ -9,6 +9,7 @@ De [dataset](http://ipt.sovon.nl/resource?r=eoa1997) bevat data die is verzameld
 Er zijn 3 verschillende visualisaties. De eerste visualisatie is een kaart van Europa waarop het aantal broedende vogelsoorten of het aantal observaties per land kan worden gevisualiseerd.
 Als er op een land wordt geklikt verschijnt er een barchart die de top tien van genera laat zien waarvan de meeste vogelsoorten in dat land broeden. Als er vervolgens
 op een genusbar wordt geklikt komt er een barchart onder te staan waarin te zien is welke soorten dat zijn en hoe vaak ze zijn geobserveerd. 
+<img src="docs/visualisatie1.PNG" width="50">
 ![kaart Europa](docs/visualisatie1.PNG)
 ![barchart genus Rusland](docs/visualisatie2.PNG)
 
