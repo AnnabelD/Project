@@ -1,2 +1,0 @@
-
-This work is released into the public domain. 
