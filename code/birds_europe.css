@@ -105,3 +105,9 @@ h1{
     color: #333;
 }
 
+/* citation */
+#source{
+	font-size: 12px;
+	text-align: center;
+}
+

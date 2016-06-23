@@ -27,4 +27,4 @@ De code (countries.py in de map scripts) om de coordinaten uit de dataset om te 
 Het shapefile dat in die code wordt gebruikt, TM_WORLD_BORDERS-0.3, is verkregen van de site http://thematicmapping.org/ .
 De code om alle drieletter landcodes te krijgen die datamaps gebruikt komt van stackoverflow: http://stackoverflow.com/questions/25044145/datamaps-get-list-of-country-codes .
 De dataset komt van E J M Hagemeijer and M J Blair (Editors). 1997. The EBCC Atlas of European Breeding Birds: Their Distribution and Abundance. T & A D Poyser, London.
-De data kan [hier](http://ipt.sovon.nl/resource?r=eoa1997) verkregen worden. 
+De dataset heeft een Creative Commons Attribution (CC-BY) 4.0 License. De data kan [hier](http://ipt.sovon.nl/resource?r=eoa1997) verkregen worden. 
