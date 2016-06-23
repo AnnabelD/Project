@@ -1,0 +1,107 @@
+/* 
+* Annabel Droste 
+* Stylesheet
+*/
+
+/* header/titel en achtergrond */
+#wrapper{
+	position: relative;
+}
+
+#introduction{
+	width: 60%;
+	position: relative;
+	text-align: center;
+	color: #000033;
+	font-weight: bold;
+}
+
+#backgroundIntro{
+	width: 100%;
+	bottom: 0;
+	position: absolute;
+	top: 0;
+	background-image: url("../img/birdsun.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.5;
+}
+
+#backgroundColor{
+	background-color: #FFCC82;
+}
+
+h1{
+	color: #000099 !important;
+}
+
+/* single species visualisation */
+#dropdown, #map_species {
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* places the visualisations slightly indented from the text */
+.speciesVisualisation, 
+.barcharts{
+	width: 80% !important;
+	margin: auto !important;
+}
+
+/* size of the maps */
+#map{
+	position: relative; 
+	width: 560px; 
+	height: 420px;
+	margin: auto;
+}
+
+#map_species{
+	position: relative; 
+	width: 320px; 
+	height: 240px;
+}
+
+/* barcharts */
+.barchartspecies rect{
+	fill: #00CC00;
+}
+
+.barchartgenus rect{
+	fill: #009900;
+}
+
+.barchartdiv rect{
+	fill: #009900;
+}
+
+.tipExtra{
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.tipExtra:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
