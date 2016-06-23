@@ -51,47 +51,38 @@ De basis van de visualisaties staat in birds_europe.js, de functies voor de barc
 De eerste kaart wordt meteen aangemaakt door window.onload functie. Hij staat standaard op species. Nadat de kaart is aangemaakt wordt de button gekleurd. Als er op een
 andere button wordt gedrukt, worden beide buttons meegegeven aan een functie die de kleur verandert, wordt de kaart gekleurd en de legenda verandert met behulp van jquery. 
 Het was tamelijk lastig (vond ik) om de legenda van de datamap te veranderen zonder zelf helemaal een legenda te definiëren. Ik heb de datamap functie map.legend() gebruikt om
-een legenda te tekenen. Hierdoor komen in de legenda altijd de fillKeys te staan. Doordat zowel soorten als observaties dezelfde datamap gebruiken en een andere schaal hebben, creëerde dat problemen. 
+een legenda te tekenen. Hierdoor komen in de legenda altijd de fillKeys te staan. Doordat zowel soorten als observaties dezelfde datamap gebruiken maar wel een andere schaal hebben, creëerde dat problemen. 
 Uiteindelijk was de oplossing redelijk simpel door de td elementen van de datamap te selecteren met jQuery en diens tekst met replaceWith te veranderen afhankelijk van de geklikte button. 
 
 Als er op een land geklikt wordt, wordt een functie aangeroepen om een barchart te maken. Deze functie krijgt als argumenten de landnamen en de observaties die in dat land zijn gedaan, mee.
- 
+Als de data nog een keer wordt verwerkt zodat het in het goede format staat om er makkelijk een barchart van de maken wordt de d.details ook meegegeven, zodat de soorten binnen dat genus
+makkelijk toegankelijk zijn als er op een bar in de genus barchart wordt geklikt. Ik heb ervoor gekozen om beide barcharts met dezelfde functie te tekenen aangezien er redelijk veel 
+overlap in code was. Om ervoor te zorgen dat wel de juiste data werd geselecteerd en de juiste labels op de assen kwamen, worden er aan het begin van de functie variabelen aangemaakt
+die een andere waarde hebben naargelang de message ("species" of "genus") die wordt meegegeven aan de functie. De message geeft aan of er respectievelijk een genus barchart of een species barchart moet worden gemaakt.
+Doordat de hoeveelheid bars per chart kan verschillen wordt de barhartbreedte dynamische bepaald. Als er slechts 1 soort binnen een genus is, ziet dat er minder mooi uit, maar in de andere gevallen is het beter dan
+de breedte van de chart aan te passen met het risico dat het plotseling onder de map komt te staan i.p.v. in zijn eigen kolom.
 
+#### Visualisatie 3: Verspreiding van 1 soort
+Met behulp van een dropdownmenu kan de gebruiker een soort selecteren. Als vervolgens op de knop ernaast wordt gedrukt wordt de barchart getekend en de kaart ingekleurd. 
+Ik heb voor een extra knop gekozen omdat het dan voor de gebruiker duidelijk is waar hij/zij op moet klikken. Het dropdownmenu wordt gemaakt met behulp van een lijst met alle soorten die
+in de dataset voorkomen (499). Deze lijst wordt eenmaal in de window.onload-functie aangemaakt. De data-live-search van bootstrap is op "true" gezet zodat er suggesties komen te staan 
+als de gebruiker typt. Dit zorgt ervoor dat de gebruiker niet de alle 499 soorten langs hoeft te gaan. 
+Er is voor een dropdownmenu gekozen omdat de gebruiker nu niet de precieze naam hoeft in te typen die ook in de dataset voorkomt. Ook worden nonsens inputs niet geaccepteerd. 
+Als er op de button naast het dropdownmenu wordt geklikt, wordt met behulp van jQuery de soortnaam gepakt. Deze naam wordt meegegeven aan de functie diversity() die de barchart
+maakt en de functie colorSpeciesMap aanroept die de kaart kleurt. Deze functie wordt binnen de barchartfunctie aangeroepen omdat er dan slechts 1 keer door de dataset geloopt hoeft te worden om 
+de landennamen te krijgen waar de soort aanwezig is. 
 
-#### Visualisations by Country
-The first map is linked to two buttons that allow the user to either see the total number of species or the total number of observations in a country. 
-When a button is clicked two functions are called to colour the map and to change the legend of the datamap with the use of jQuery by actually selecting the <td> elements of the datamap that contain the legend and replacing them 
-with another label with javascript (replaceWith). I have chosen to do it like this because datamaps makes it hard to update a legend since it uses the fillKey to make the legend.
-The map contains an onclick function which creates a barchart for that specific country with the top ten of genera with the most species. The top ten is determined by
-sorting the entire array of genera and the number of species they contain and setting the length of the array to ten if the array is longer than ten. This
-bargraph also contains an onclick function which creates a bargraph of the number of observations for all the species in that genus in the country. Both these bargraphs
-are created with the same function. 
-
-#### Visualisations by Species
-The visualisations by species are controlled by a dropdown menu. If a species is selected a barchart is drawn and the map is colored to make the breeding countries clearly
-visible. To create the dropdown menu, a list is made of all the species present in that country by iterating over the dataset and pushing all the species names that are not yet in 
-a list to that list. This is done once. The user can start typing to make the search easier. The data-live-search option of bootstrap is set to true, so that the 
-dropdown menu shows suggestions based on what has been typed. If the button next to the dropdown menu is clicked the function to make the barchart is called (diversity()). 
-Within this function, the function to color the map (colorSpeciesMap) is called and three arguments are given: a list of all countries where the species breeds (countries), the entire
-dataset (dataFormat) and the map (speciesMap). countries is given as argument because otherwise it would have been necessary to loop once again through the entire dataset to check in which 
-countries the species is present. dataFormat is given so that the countrycodes can be obtained easily. speciesMap is the datamap that has beed defined earlier. In order to update it, 
-it has to be given to the function. It would also have been possible to make it a global variable, but I thought that looked confusing in the code if one datamap was global and the other was not. 
-The list of countries could potentially be made inside the onload function but it changes with every species selected so to do that in another function was neatest.
-
-#### Dataprocessing
-The unprocessed dataset was 500 mB, to be able to explore it better, I have split it in half so that "kladblok" (a texteditor) would not crash every time. The "'s" were also replaced
-by "s". Otherwise the data could not be loaded with d3.json. The biggest problem with the processing of the data was the conversion of coordinates to countrynames. 
-Several approaches have been tried the best two are mentioned below. 
-- google API: the google API made the conversion fast but did not recognize coordinates in sea and only allowed 2500 queries a day. The code used to try this was based on http://stackoverflow.com/questions/20169467/how-to-convert-from-longitude-and-latitude-to-country-or-city .
-- use of shapefile and OSgeoW: does not recognize coordinates in sea and takes a couple of hours to process the entire dataset. 
-
-I used the shapefile and OSgeoW approach. The code can be found in coo.py within the scripts folder. The program that does the actual conversion (countries.py) has been included in the same folder
-and was obtained from https://github.com/che0/countries . I accepted that observations with coordinates in the sea were named as "None". In the processing of the data in javascript I filter these out.
-The observations made in Guernsy and Isle of Man were not recognized in the high resolution datamap that I used, unclear why since the normal resolution worked fine, so these were also filtered out. 
-The number of observations on these Islands were around the 300, so rather low in comparison with most of the other countries. 
-Another problem with the dataset was that the entries in the dataset contained an "individualCount" which was an estimate of the number of species present at that point. 
-However the ranges of this label were from 0, 0-9, 10-99, 100-999, 1000-9999, 10000-99999 and no estimation. Because these numbers are hardly comparable (110 breeding birds viewed in a spot is quite different from 810 breeding birds) and
-no estimation says even less about the actual number of birds, I decided to treat each entry as a single observation. Only the entries with an individualCount of 0 were filtered out in the python program. 
+#### Dataverwerking
+De dataset die gebruikt is, is 500 MB groot. Om ervoor te zorgen dat kladblok niet telkens vastloopt als ik de opbouw van de dataset bekijk, heb ik de dataset in tweeën gesplitst.
+De "'s" is vervangen door een "s" om te voorkomen dat python telkens foutmeldingen gaf bij het jsondumpen. Het grootste probleem met de dataset was het omzetten van 
+coördinaten naar landnamen. Het is te doen met een google API, die is redelijk snel i.v.m. andere methodes. Het nadeel is dat er maar 2500 queries per dag waren toegestaan, 
+en met een dataset van meer dan 300.000 waarnemingen was dat niet te doen. 
+Ik heb het daarom met behulp van een python programma gedaan, maar helaas is het een hele langzame methode. Het zoekt de coordinaten op in een shapefile en checkt vervolgens in
+welk land het ligt. OSgeoW is nodig voor de modulen osgeo en gdal. De code komt van https://github.com/che0/countries . En het shapefile van http://thematicmapping.org/ .
+Zowel de google API als het python programma herkennen geen coördinaten die in zee liggen. Ik heb geaccepteerd dat die niet worden meegenomen in de visualisaties. 
+De dataset was ook niet helemaal duidelijk wat betreft het aantal vogels per observaties. In de dataset was er een kolom met individualCount die aangaf hoeveel vogels van een soort
+op dat coördinaat gespot waren. De waarden van deze kolom waren als volgt: 0, 0-9, 100-999, 1000-9999, 10000-99999 en "no estimation". Deze getallen zijn nauwelijks te vergelijken en
+omdat "no estimation" nog minder zegt over het aantal broedende vogels heb ik ervoor gekozen om elke rij in de dataset als 1 observatie te tellen.  
 
 ## Veranderingen van het oorspronkelijke DESIGN.md
 In het DESIGN.md was ik ervan uitgegaan dat er data (datums) waren ingevoerd bij de observaties maar dat bleek niet het geval. Daardoor zijn de visualisaties meer geconcentreerd 
