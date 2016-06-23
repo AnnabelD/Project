@@ -117,3 +117,9 @@ dingen voor to do:
 - processing scripts aan het eind gezet doordat ik het idee heb dat de pagina dan sneller iets laat zien. De andere scripts staan nog bovenaan aangezien sommige 
 	daarvan nodig zijn voor de opmaak. 
 
+## Dag 18
+- misschien toch een andere header kleur/ achtergrondkleur die niet in hetzelfde spectrum zit als de kaart. Op dit moment is het een beetje onduidelijk
+
+## Dag 19
+Niet vergeten: 
+- img map leegmaken

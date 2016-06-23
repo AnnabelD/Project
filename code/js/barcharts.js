@@ -3,13 +3,12 @@
 * Functions to make the barcharts
  */
  
- // 1e barchart van de as af zetten
- 
  /* Function that draws the chart that shows up if a country is clicked and shows all the top ten genera observed in that country. The same function is called
 again if a bar in the barchart is clicked. Then it shows all the species in the genus that are present in the country. If the user hovers over a bar, a link
 to the wikipedia is accessible in the tooltip. 
 	 */
 function drawChart(data, name, type){
+	// selects the specific value needed to draw the correct barchart depending on the type ("genus" or "species")
 	if (type == "genus"){
 		tip.hide();
 		var dataArray = data;
@@ -53,6 +52,7 @@ function drawChart(data, name, type){
 	dataDomain = dataDomain.sort(function(a, b) {
 		return b.number < a.number ? -1 : b.number > a.number ? 1 : b.number >= a.number ? 0 : NaN;
 	})
+	// if there are more than 10 genera, set the height back to 10, otherwise the barchart becomes too big
 	if (type == "genus"){
 		if (dataDomain.length > 10){dataDomain.length = 10;}
 	};
@@ -97,7 +97,7 @@ function drawChart(data, name, type){
     	})
 		.on("click", function(d){ if (type == "genus"){drawChart(d, d.name + " in " + name, "species");}});
 		
-    // creëren van de assen
+    // draw the axes
     chart.append("g")
     	.attr("class", "y axis")
     	.call(yAxis)
@@ -123,7 +123,6 @@ function drawChart(data, name, type){
         .attr("x", (width / 2))             
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")   
-        /* .text(type + " in " + name) */
 		.text(title);
 }
 
@@ -191,7 +190,7 @@ function diversity(dataFormat, speciesName, speciesMap){
     		divTip.hide(d);
     	})
 
-	// creëren van de assen
+	// draw the axes
     divChart.append("g")
     	.attr("class", "y axis")
     	.call(yDivAxis)
@@ -212,6 +211,7 @@ function diversity(dataFormat, speciesName, speciesMap){
 		.attr("dy", ".31em")
 		.attr("transform", "rotate(-65)")
 		.style("text-anchor", "end");
-		
+	
+	// color the map absent/present 
 	colorSpeciesMap(countries, dataFormat, speciesMap);
 };

@@ -5,50 +5,51 @@
 ----------------------------------------------
 
 ## Beschrijving van de visualisaties
-Deze visualisatie laat de gebruiker onderzoeken waar bepaalde soorten broeden, welke genera het meest in een land broeden (bijv. de meeuwen), welk land de 
+Deze visualisatie laat de gebruiker onderzoeken waar bepaalde soorten broeden, welke genera (geslachten) het meest in een land broeden (bijv. de meeuwen), welk land de 
 meeste broedvogelsoorten telt en waar de meeste observaties zijn gedaan. Als de gebruiker bijvoorbeeld wil weten in welke landen de ijsvogel broedt, dan
 kan die soort via het dropdown menu geselecteerd worden waarna de kaart wordt gekleurd om te laten zien in welke landen broedparen aanwezig zijn en welke niet. 
 Op de eerste kaart kan ofwel het aantal soorten per land, of het aantal observaties per land worden geselecteerd. Als er op een land wordt geklikt worden de 
-10 genera waarvan de meeste soorten in het land broeden in een barchart gevisualiseerd. Dit laat zien dat er in Nederland bijvoorbeeld meer mezensoorten broeden dan meeuwensoorten. 
-Als er vervolgens op een van de bars wordt geklikt wordt er een tweede barchart getekend waar te zien is welke mezen of meeuwensoorten dat dan zijn. Beide barcharts
-hebben een hoverfunctie die een link laat zien naar de desbetreffende wikipediapagina van de soort of genus. 
+10 genera waarvan de meeste soorten in het land broeden in een barchart gevisualiseerd. Dit laat zien dat er in Nederland bijvoorbeeld meer mezensoorten broeden dan meeuwensoorten. Dit geeft
+een indicatie wat voor soort vogels veel aanwezig zijn in een land. Als er vervolgens op een van de bars wordt geklikt wordt er een tweede barchart getekend waar te zien is welke mezen of meeuwensoorten dat dan zijn. Beide barcharts
+hebben een hoverfunctie die een link laat zien naar de desbetreffende wikipediapagina van de soort of genus, op die manier kunnen gebruikers meer informatie opzoeken over een soort of genus. 
 De dataset die gebruikt is, is de research dataset van E J M Hagemeijer and M J Blair (Editors). 1997. The EBCC Atlas of European Breeding Birds: Their Distribution and Abundance. T & A D Poyser, London. 
 De data is vergaard tussen 1972 en 1995. 
 
 ## Visueel design
 
 #### Het geheel
-De header bevat een plaatje van vliegende meeuwen omdat het er leuk en levendig uitziet. Om de overgang van de introductie naar de rest zo vloeiend mogelijk te laten gaan
-is voor de achtergrondkleur van de rest ook voor een heel licht blauwgrijs gekozen. Het is prettiger om naar te kijken dan fel wit.
+De header bevat een plaatje van een vliegende meeuw omdat het er leuk en levendig uitziet. Om de overgang van de introductie naar de rest zo vloeiend mogelijk te laten gaan
+is voor de achtergrondkleur van de rest ook voor een soort oranjeachtige kleur gekozen. Het is prettiger om naar te kijken dan fel wit en zorgt ervoor dat de eerste kaart duidelijk zichtbaar is, ook met heel lichtblauw.
 De pagina is ruwweg in twee kolommen omdat visualisatie 1 en 2 naast elkaar moeten staan aangezien de gebruiker anders niet doorheeft dat er iets gebeurt als hij op 
-een land klikt.
+een land klikt. Bootstrap is gebruikt omdat dat het true-live-search van het dropdown menu makkelijker maakt en omdat de positionering van de elementen wordt makkelijker.
 
 #### Visualisatie 1: kaart aantal soorten en observaties
-Voor beide visualisaties is voor een blauw kleurenschema gekozen (verkregen van colorbrewer2.org). Het is een single hue, blauw schema waarvan de eerste waarde
-niet is meegenomen aangezien die teveel op wit leek en niet goed zichtbaar was op de achtergrond. Er is voor blauw gekozen aangezien blauw een neutrale, niet-aggressieve kleur is
+Voor beide visualisaties is voor een blauw kleurenschema gekozen (verkregen van colorbrewer2.org). Het is een single hue, blauw schema. Er is voor blauw gekozen aangezien blauw een neutrale, niet-aggressieve kleur is
 en prettig om naar te kijken. Als er overheen gehoverd wordt, is er voor groen gekozen zodat het goed duidelijk wordt bij welk land de tooltip hoort. In de tooltip
-staan zowel het aantal observaties als het aantal soorten in een land, zodat het mogelijk is om snel landen te vergelijken. Rusland heeft bijvoorbeeld meer soorten dan Oekraïne, door ook meteen
-naar het aantal observaties te kijken, blijkt dat Rusland ook daar veel meer van heeft. Daardoor kan men aannemen dat Rusland over het algemeen meer soorten broedvogels heeft dan Oekraïne. 
-De twee buttons bovenaan de kaart worden gebruikt om tussen de kaarten te schakelen. De kaart die op dat moment gevisualiseerd wordt is groen, net zoals de hoverfunctie
+staan zowel het aantal observaties als het aantal soorten in een land, zodat het mogelijk is om snel landen te vergelijken. Rusland heeft bijvoorbeeld meer soorten dan Oekraïne. Maar dat hangt af van het aantal observaties in het land.
+Door ook meteen naar het aantal observaties te kunnen kijken in de tooltip, blijkt dat Rusland ook daar veel meer van heeft. Daardoor kan men aannemen dat Rusland over het algemeen meer soorten broedvogels heeft dan Oekraïne. 
+De twee buttons bovenaan de kaart worden gebruikt om tussen de kaarten te schakelen. De kaart die op dat moment gevisualiseerd wordt, heeft een groene button, net zoals de hoverfunctie
 zodat het nog duidelijker wordt dat geselecteerde elementen groen zijn. Als er op een land geknipt wordt, wordt de top 10 genera laten zien (zie visualisatie 2).
 
 #### Visualisatie 2: top 10 genera en diens soorten
 De top 10 genera heeft ook groen als kleur om de link met de kaart duidelijk te maken (hoverfunctie en ingeklikte button) maar tegelijkertijd te laten zien dat
 niet hetzelfde wordt gevisualiseerd als in de kaart (dus niet aantal soorten of aantal observaties per land). De link van de hoverfunctie heeft een witte achtergrond met opacity
-om ervoor te zorgen dat de link goed leesbaar blijft als hij bijvoorbeeld door de as gaat. De bars worden lichter door de hover om duidelijk te maken welke geselecteerd is. 
+om ervoor te zorgen dat de link goed leesbaar blijft als hij bijvoorbeeld door de as gaat. De bars worden lichter als er overheen gehoverd wordt om duidelijk te maken welke geselecteerd is. 
 
 #### Visualisatie 3: Verspreiding van 1 soort
 Er is gekozen voor een dropdown menu omdat de gebruiker op die manier niet de precieze spelling van de naam in de database hoeft in te typen. Er staat een button naast
-zodat duidelijk is wat er gaat gebeuren en wat de bedoeling is van de visualisatie. In zowel de barchart als de kaart is een roodachtige/oranjekleur gekozen om aanwezigheid 
-te laten zien. Het is niet twee keer dezelfde kleur omdat beide een andere variabele laten zien: in de kaart presentie, in de barchart aantal observaties. De kleur
-donkerblauw is gekozen voor absent aangezien het contrasteert en goed zichtbaar is. Grijs geeft geen data aan, net zoals in de eerste kaart. 
+zodat duidelijk is wat er gaat gebeuren en wat de bedoeling is van de visualisatie. In de kaart is een roodachtige/oranjekleur gekozen om aanwezigheid 
+te laten zien. Er is voor deze kleur gekozen omdat groen en blauw al andere variabelen laten zien in de andere visualisaties en roodachtig wel duidelijk af te lezen is. 
+Het is niet twee keer dezelfde kleur als de barchart omdat beide een andere variabele laten zien: in de kaart presentie, in de barchart aantal observaties. De barchart is groen, aangezien het dezelfde
+variabele is als de bars van visualisatie 2. De kleur donkerblauw is gekozen voor absent in de kaart aangezien het goed contrasteert met het roodachtige. Het is wel een andere kleur blauw dan in de eerste kaart
+omdat het wel een andere betekenis heeft. Grijs geeft geen data aan, net zoals in de eerste kaart. 
 Alle barcharts hebben een schuin ticklabel op de x-as aangezien ik dat altijd een stuk leesbaarder vindt dan een volledig verticale. 
 
 ## Technisch design
 De basis van de visualisaties staat in birds_europe.js, de functies voor de barcharts staan in barcharts.js en de kaarten worden gekleurd door mapfunctions.js. 
 
 #### Visualisatie 1 en 2: kaart aantal soorten/observaties en top 10 genera en diens soorten
-De eerste kaart wordt meteen aangemaakt door window.onload functie. Hij staat standaard op species. Nadat de kaart is aangemaakt wordt de button gekleurd. Als er op een
+De eerste kaart wordt meteen aangemaakt door window.onload functie. Hij staat standaard op species (aantal soorten per land). Nadat de kaart is aangemaakt wordt de button gekleurd. Als er op een
 andere button wordt gedrukt, worden beide buttons meegegeven aan een functie die de kleur verandert, wordt de kaart gekleurd en de legenda verandert met behulp van jquery. 
 Het was tamelijk lastig (vond ik) om de legenda van de datamap te veranderen zonder zelf helemaal een legenda te definiëren. Ik heb de datamap functie map.legend() gebruikt om
 een legenda te tekenen. Hierdoor komen in de legenda altijd de fillKeys te staan. Doordat zowel soorten als observaties dezelfde datamap gebruiken maar wel een andere schaal hebben, creëerde dat problemen. 
@@ -56,7 +57,7 @@ Uiteindelijk was de oplossing redelijk simpel door de td elementen van de datama
 
 Als er op een land geklikt wordt, wordt een functie aangeroepen om een barchart te maken. Deze functie krijgt als argumenten de landnamen en de observaties die in dat land zijn gedaan, mee.
 Als de data nog een keer wordt verwerkt zodat het in het goede format staat om er makkelijk een barchart van de maken wordt de d.details ook meegegeven, zodat de soorten binnen dat genus
-makkelijk toegankelijk zijn als er op een bar in de genus barchart wordt geklikt. Ik heb ervoor gekozen om beide barcharts met dezelfde functie te tekenen aangezien er redelijk veel 
+makkelijk toegankelijk zijn voor de barchart van de soorten in een genus. Ik heb ervoor gekozen om beide barcharts met dezelfde functie te tekenen aangezien er redelijk veel 
 overlap in code was. Om ervoor te zorgen dat wel de juiste data werd geselecteerd en de juiste labels op de assen kwamen, worden er aan het begin van de functie variabelen aangemaakt
 die een andere waarde hebben naargelang de message ("species" of "genus") die wordt meegegeven aan de functie. De message geeft aan of er respectievelijk een genus barchart of een species barchart moet worden gemaakt.
 Doordat de hoeveelheid bars per chart kan verschillen wordt de barhartbreedte dynamische bepaald. Als er slechts 1 soort binnen een genus is, ziet dat er minder mooi uit, maar in de andere gevallen is het beter dan
@@ -83,6 +84,10 @@ Zowel de google API als het python programma herkennen geen coördinaten die in 
 De dataset was ook niet helemaal duidelijk wat betreft het aantal vogels per observaties. In de dataset was er een kolom met individualCount die aangaf hoeveel vogels van een soort
 op dat coördinaat gespot waren. De waarden van deze kolom waren als volgt: 0, 0-9, 100-999, 1000-9999, 10000-99999 en "no estimation". Deze getallen zijn nauwelijks te vergelijken en
 omdat "no estimation" nog minder zegt over het aantal broedende vogels heb ik ervoor gekozen om elke rij in de dataset als 1 observatie te tellen.  
+
+De scripts voor de dataverwerking staan in de map scriptspython. Het zijn allemaal verschillende scripts omdat het dan makkelijker om tussen door te checken of er iets fout gaat. 
+Dat is handig omdat de stap van coördinaten naar landnamen zo traag is en dan is het niet prettig om na een paar uur erachter te komen dat je een verkeerd bestand of iets dergelijks als 
+input hebt gegeven. 
 
 ## Veranderingen van het oorspronkelijke DESIGN.md
 In het DESIGN.md was ik ervan uitgegaan dat er data (datums) waren ingevoerd bij de observaties maar dat bleek niet het geval. Daardoor zijn de visualisaties meer geconcentreerd 

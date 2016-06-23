@@ -4,7 +4,7 @@ Functions that color the map according to the data they receive
 
 /* First map functions */
 
-/* Colors the countries based on the the species per country or the total number of observations */
+/* Colours the countries based on the the species per country or the total number of observations */
 function key(scale, total){
 	var colors = ['<60 species','<160 species','<240 species','<320 species','<400 species'];
 
@@ -52,13 +52,14 @@ function updateLegendLabels(array, unit){
 	}
 }
 
+/* Colors the buttons above the first map to show whether the map shows number of species per country, or number of observations */
 function changeColorButton(clickedButton, resetButton){
 	clickedButton.style.backgroundColor = "#33FF33";
 	resetButton.style.backgroundColor = "#deebf7";
 }
 
-
 /* Second map functions (the map that reacts to the dropdown menu) */
+
 /* Colors the countries where the species is present. */
 function colorSpeciesMap(countries, dataFormat, speciesMap){
 	var newDataFormat = {};

@@ -16,7 +16,7 @@ var legendHeight = 75;
 var scaleSpecies = [0, 60, 160, 240, 320, 400];
 var scaleObservations = [0, 6000, 12000, 18000, 24000, 30000];
 
-// barchart genus
+// y axis barchart genus
 var y = d3.scale.linear()
 	.range([height, 0]);
 
@@ -49,7 +49,7 @@ window.onload = function (){
 	// process the data and make sure it is in the right structure
 	for (var i in data){
 		// guernsey and isle of man create errors with the high resolution datamap (the non-high resolution functioned okay). 
-		// Isle of Man is the last entry, so a break must occur 
+		// Isle of Man is the last entry, so needs to bread out of the loop
 		if (data[i].country == "None" || data[i].country == "Guernsey"){
 			data.splice(i,1);
 		}
@@ -160,15 +160,16 @@ window.onload = function (){
 	// creates the two buttons
 	var speciesButton = document.getElementById("speciesButton");
 	var totalButton = document.getElementById("totalObsButton");
-	
+
+	// standard view first map is number of species, so colour species button
 	changeColorButton(speciesButton, totalButton);
 	
-	// colors the map by the total number of species per country
+	// colours the map by the total number of species per country
 	speciesButton.addEventListener("click", function(){ colourMap(map, dataFormat, scaleSpecies);
 	changeColorButton(speciesButton, totalButton);
 	selectLegend("species")});
 	
-	// colors the map by the total number of observations per country
+	// colours the map by the total number of observations per country
 	totalButton.addEventListener("click", function(){ colourMap(map, dataFormat, scaleObservations);
 	changeColorButton(totalButton, speciesButton);
 	selectLegend("observations");});
@@ -176,6 +177,7 @@ window.onload = function (){
 	// create a list of all the species in the dataset that can be used by the dropdown-menu
 	var species_list = getSpeciesNames(dataFormat).sort();
 	
+	// create dropdown
 	var dropdown = d3.select("#dropdown")
 		.append("select")
 		.attr("id", "dropdownOptions")
@@ -194,7 +196,7 @@ window.onload = function (){
 		size: 4
 	});
 	
-	// allows the user to type in a pecies and draws the barchart for that species and colors the species map 
+	// allows the user to type in a pecies and draws the barchart for that species and colours the species map 
 	var speciesDivButton = document.getElementById("speciesDivSubmit");
 	speciesDivButton.addEventListener("click", function(){ 
 		diversity(dataFormat, $("#dropdownOptions").val(), speciesMap);});
