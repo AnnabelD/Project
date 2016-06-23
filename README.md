@@ -22,7 +22,7 @@ een verspreidingsgebied hebben. Sommige soorten komen alleen in het noorden voor
 
 Het aantal observaties per soort is niet goed te vergelijken tussen landen doordat het totale aantal observaties per land sterk verschilt (zie visualisatie 1). 
 
-#### Licences
+#### Licenses
 De code (countries.py in de map scripts) om de coordinaten uit de dataset om te zetten naar landnamen komt van https://github.com/che0/countries .
 Het shapefile dat in die code wordt gebruikt, TM_WORLD_BORDERS-0.3, is verkregen van de site http://thematicmapping.org/ .
 De code om alle drieletter landcodes te krijgen die datamaps gebruikt komt van stackoverflow: http://stackoverflow.com/questions/25044145/datamaps-get-list-of-country-codes .
