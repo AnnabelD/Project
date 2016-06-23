@@ -15,6 +15,9 @@ hebben een hoverfunctie die een link laat zien naar de desbetreffende wikipediap
 De dataset die gebruikt is, is de research dataset van E J M Hagemeijer and M J Blair (Editors). 1997. The EBCC Atlas of European Breeding Birds: Their Distribution and Abundance. T & A D Poyser, London. 
 De data is vergaard tussen 1972 en 1995. 
 
+<img src="docs/screenshot.PNG" width="400">
+<img src="docs/visualisatie3.PNG" width="300">
+
 ## Visueel design
 
 #### Het geheel
