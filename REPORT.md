@@ -106,7 +106,8 @@ Maar hier is nog een korte herhaling van de lastige punten en de oplossing:
 	zijn van de introductie div. Dit kon door top en bottom op 0 te zetten en de position op absolute (achtergrond) en relative (introduction) te zetten. 
 - heel traag programma om de coördinaten naar landnamen om te zetten: gewoon geaccepteerd en de computer een nacht laten draaien. 
 - de high resolution datamap geeft foutmeldingen bij Isle of Man en Guernsey: gehardcode in js als de data wordt ingelezen en bewerkt dat het niet wordt gebruikt
-
+- dataset bevatte niet alle data die ik had verwacht (misschien had ik beter moeten kijken voordat ik mijn DESIGN.md schreef), daardoor is het idee van de visualisaties aangepast.
+	Hieronder staat welke en hoe de visualisaties veranderd zijn. 
 
 ## Veranderingen van het oorspronkelijke DESIGN.md
 In het DESIGN.md was ik ervan uitgegaan dat er data (datums) waren ingevoerd bij de observaties maar dat bleek niet het geval. Daardoor zijn de visualisaties meer geconcentreerd 
