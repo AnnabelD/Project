@@ -16,6 +16,8 @@ De dataset die gebruikt is, is de research dataset van E J M Hagemeijer and M J 
 De data is vergaard tussen 1972 en 1995. 
 
 <img src="docs/screenshot.PNG" width="400">
+
+Dit staat eronder:
 <img src="docs/visualisatie3.PNG" width="300">
 
 ## Visueel design
