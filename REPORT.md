@@ -51,7 +51,7 @@ omdat het wel een andere betekenis heeft. Grijs geeft geen data aan, net zoals i
 Alle barcharts hebben een schuin ticklabel op de x-as aangezien ik dat altijd een stuk leesbaarder vindt dan een volledig verticale. 
 
 ## Technisch design
-De basis van de visualisaties staat in birds_europe.js, de functies voor de barcharts staan in barcharts.js en de kaarten worden gekleurd door mapfunctions.js. 
+De basis van de visualisaties staat in birds_europe.js, de functies voor de barcharts staan in barcharts.js en de kaarten worden gekleurd door mapfunctions.js.  
 
 #### Visualisatie 1 en 2: kaart aantal soorten/observaties en top 10 genera en diens soorten
 De eerste kaart wordt meteen aangemaakt door window.onload functie. Hij staat standaard op species (aantal soorten per land). Nadat de kaart is aangemaakt wordt de button gekleurd. Als er op een
@@ -93,6 +93,20 @@ omdat "no estimation" nog minder zegt over het aantal broedende vogels heb ik er
 De scripts voor de dataverwerking staan in de map scriptspython. Het zijn allemaal verschillende scripts omdat het dan makkelijker om tussen door te checken of er iets fout gaat. 
 Dat is handig omdat de stap van coördinaten naar landnamen zo traag is en dan is het niet prettig om na een paar uur erachter te komen dat je een verkeerd bestand of iets dergelijks als 
 input hebt gegeven. 
+
+## Uitdagingen
+Onder het kopje Technish design zijn de uitdaginen al voor een deel genoemd, aangezien de manier van implementeren gelinkt is aan de problemen waar ik tegenaan ben gelopen.
+Maar hier is nog een korte herhaling van de lastige punten en de oplossing:
+- legenda datamaps: met behulp van jQuery de td elementen van de datamaplegenda selecteren en vervangen
+- 2 barcharts met 1 functie tekenen: met behulp van if-statements variabelen definiëren waardoor de rest van de code algemeen wordt
+- updaten van de maps: hierbij moest telkens de hele dataset mee worden gegeven aangezien die data als argument aan de onclickfuncties moet worden gegeven. 
+- achtergrondafbeelding opacity op 0.5: dit was noodzakelijk voor de leesbaarheid, maar kan niet in dezelfde div als de tekst want dan erft die de opacity, dus uiteindelijk
+	moest er een tweede div gecreëerd worden. 
+- wrapper div om de introductie en achtergrond: als er wordt ingezoomd moest de afbeelding mee veranderen. Daardoor moet de hoogte van de achtergrond div afhankelijk
+	zijn van de introductie div. Dit kon door top en bottom op 0 te zetten en de position op absolute (achtergrond) en relative (introduction) te zetten. 
+- heel traag programma om de coördinaten naar landnamen om te zetten: gewoon geaccepteerd en de computer een nacht laten draaien. 
+- de high resolution datamap geeft foutmeldingen bij Isle of Man en Guernsey: gehardcode in js als de data wordt ingelezen en bewerkt dat het niet wordt gebruikt
+
 
 ## Veranderingen van het oorspronkelijke DESIGN.md
 In het DESIGN.md was ik ervan uitgegaan dat er data (datums) waren ingevoerd bij de observaties maar dat bleek niet het geval. Daardoor zijn de visualisaties meer geconcentreerd 
